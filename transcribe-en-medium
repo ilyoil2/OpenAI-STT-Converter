@@ -9,4 +9,4 @@ if [ ! -x "$PYTHON" ]; then
   exit 1
 fi
 
-exec "$PYTHON" "$SCRIPT_DIR/youtube_to_srt.py" -m medium "$@"
+exec "$PYTHON" "$SCRIPT_DIR/youtube_to_srt.py" -l en -m medium "$@"

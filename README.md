@@ -18,22 +18,28 @@ brew install ffmpeg
 
 ## Usage
 
-로컬 Whisper 사용:
+일본어 Small:
 
 ```bash
-./transcribe "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt -l ja
+./transcribe-ja-small "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt
 ```
 
-Small 모델 고정:
+일본어 Medium:
 
 ```bash
-./transcribe-small "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt -l ja
+./transcribe-ja-medium "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt
 ```
 
-Medium 모델 고정:
+영어 Small:
 
 ```bash
-./transcribe-medium "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt -l ja
+./transcribe-en-small "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt
+```
+
+영어 Medium:
+
+```bash
+./transcribe-en-medium "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt
 ```
 
 동작 흐름은 아래와 같습니다.
@@ -47,5 +53,5 @@ yt-dlp -x --audio-format mp3 "https://www.youtube.com/watch?v=VIDEO_ID"
 모델 크기는 `tiny`, `base`, `small`, `medium`, `large-v3` 중에서 고를 수 있습니다.
 
 ```bash
-./transcribe "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt -l ja -m small
+.venv/bin/python youtube_to_srt.py "https://www.youtube.com/watch?v=VIDEO_ID" -o output.srt -l ja -m small
 ```
