@@ -24,6 +24,12 @@ brew install ffmpeg
 ./download-video "YOUTUBE_URL"
 ```
 
+영상 일부만 다운로드
+
+```bash
+./download-video "YOUTUBE_URL" "00:00" to "1:01:00"
+```
+
 일본어 Small:
 
 ```bash

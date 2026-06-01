@@ -1,9 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "$#" -ne 1 ]; then
-  echo "Usage: ./download-video \"YouTube URL\""
+if [ "$#" -ne 1 ] && [ "$#" -ne 4 ]; then
+  echo "Usage:"
+  echo "  ./download-video \"YouTube URL\""
+  echo "  ./download-video \"YouTube URL\" \"53:38\" to \"1:05:00\""
   exit 1
 fi
 
-exec yt-dlp -S "res:1080" -f "bv*+ba/b" --merge-output-format mp4 -P "/Volumes/Extreme SSD" "$1"
+URL="$1"
+DOWNLOAD_SECTION_ARGS=()
+
+if [ "$#" -eq 4 ]; then
+  START_TIME="$2"
+  TO_WORD="$3"
+  END_TIME="$4"
+
+  if [ "$TO_WORD" != "to" ]; then
+    echo "Invalid range syntax. Use: ./download-video \"YouTube URL\" \"53:38\" to \"1:05:00\""
+    exit 1
+  fi
+
+  DOWNLOAD_SECTION_ARGS=(
+    --download-sections "*${START_TIME}-${END_TIME}"
+    --force-keyframes-at-cuts
+  )
+fi
+
+exec yt-dlp \
+  -S "res:1080" \
+  -f "bv*+ba/b" \
+  --merge-output-format mp4 \
+  "${DOWNLOAD_SECTION_ARGS[@]}" \
+  -P "/Volumes/Extreme SSD" \
+  "$URL"
