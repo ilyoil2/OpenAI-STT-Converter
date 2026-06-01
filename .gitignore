@@ -1,0 +1,7 @@
+.env
+.venv/
+work/
+downloads/
+*.srt
+*.mp3
+__pycache__/

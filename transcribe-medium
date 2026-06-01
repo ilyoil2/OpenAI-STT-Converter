@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON="$SCRIPT_DIR/.venv/bin/python"
+
+if [ ! -x "$PYTHON" ]; then
+  echo "Virtual environment not found. Run: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"
+  exit 1
+fi
+
+exec "$PYTHON" "$SCRIPT_DIR/youtube_to_srt.py" -m medium "$@"
