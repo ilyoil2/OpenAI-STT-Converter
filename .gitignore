@@ -2,6 +2,7 @@
 .venv/
 work/
 downloads/
+saves/
 *.srt
 *.mp3
 __pycache__/
