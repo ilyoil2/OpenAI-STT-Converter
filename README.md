@@ -18,7 +18,7 @@ brew install ffmpeg
 
 ## Usage
 
-영상 MP4 다운로드:
+영상 MP4 다운로드 (외장 SSD에 저장)
 
 ```bash
 ./download-video "YOUTUBE_URL"
