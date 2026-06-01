@@ -116,11 +116,17 @@ def parse_args():
         default="downloads",
         help="Directory for downloaded MP3 files",
     )
+    parser.add_argument(
+        "--keep-audio",
+        action="store_true",
+        help="Keep the downloaded MP3 file after transcription",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
+    actual_audio_path = None
 
     try:
         actual_audio_path = download_audio(args.url, args.download_dir)
@@ -135,3 +141,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"❌ 오류가 발생했습니다: {e}")
         sys.exit(1)
+    finally:
+        if actual_audio_path and not args.keep_audio:
+            Path(actual_audio_path).unlink(missing_ok=True)

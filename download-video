@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: ./download-video \"YouTube URL\""
+  exit 1
+fi
+
+exec yt-dlp -S "res:1080" -f "bv*+ba/b" --merge-output-format mp4 -P "/Volumes/Extreme SSD" "$1"
