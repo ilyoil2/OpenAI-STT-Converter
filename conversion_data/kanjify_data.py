@@ -9,9 +9,10 @@ ANKI_DB_PATH = "./collection_extracted.anki21"  # zstd 압축 해제된 SQLite �
 
 PG_HOST = "localhost"
 PG_PORT = "5432"
-PG_DBNAME = "your_database_name"
-PG_USER = "your_username"
-PG_PASSWORD = "your_password"
+PG_DBNAME = "kanjify"
+PG_USER = "root"
+PG_PASSWORD = "1234"
+
 
 # ==========================================
 # 2. SQLite (Anki)에서 데이터 읽어오기
@@ -75,7 +76,7 @@ try:
     pg_cursor = pg_conn.cursor()
     
     create_table_query = """
-    CREATE TABLE IF NOT EXISTS tbl_vocabulary (
+    CREATE TABLE IF NOT EXISTS tbl_kanji (
         id SERIAL PRIMARY KEY,
         kanji TEXT,
         korean_reading_detail TEXT,
@@ -94,7 +95,7 @@ try:
     pg_cursor.execute(create_table_query)
 
     insert_query = """
-    INSERT INTO tbl_vocabulary (
+    INSERT INTO tbl_kanji (
         kanji, korean_reading_detail, korean_reading, radical_desc_ko,
         etymology, stroke_count_ko, radical_ja, stroke_count_ja,
         onyomi, kunyomi, meaning_ja, level
