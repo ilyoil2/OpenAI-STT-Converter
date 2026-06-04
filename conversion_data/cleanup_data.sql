@@ -17,4 +17,7 @@ WHERE id NOT IN (
              etymology, stroke_count_ko, radical_ja, stroke_count_ja,
              onyomi, kunyomi, meaning_ja, level
 );
- 
+
+-- tbl_vocabulary에서 stroke_count_ko가 '<div class="mean_tray">'로 시작하지 않는 레코드 삭제
+DELETE FROM tbl_vocabulary
+WHERE stroke_count_ko NOT LIKE '<div class="mean_tray">%';
