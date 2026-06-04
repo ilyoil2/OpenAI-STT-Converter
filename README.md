@@ -82,3 +82,13 @@ MP3를 남기고 싶으면 `--keep-audio`를 사용합니다.
 ```bash
 .venv/bin/python youtube_to_srt.py "YOUTUBE_URL" -l ja -m small
 ```
+
+프로젝트 진행을 위해서는, 
+1. migrate
+2. kanjify_data download
+3. remove_duplicates
+4. remove 𢖻 <- 확장한자 대체 (extension_characters.md 확인)
+SELECT *
+FROM tbl_kanji
+WHERE etymology LIKE '%𢖻%';
+5. tbl_voca 단어 level 설정 (assign_jlpt_levels.py 확인)
