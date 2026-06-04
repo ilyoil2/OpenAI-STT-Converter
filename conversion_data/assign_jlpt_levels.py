@@ -3,6 +3,10 @@ import google.generativeai as genai
 import json
 import time
 import os
+from dotenv import load_dotenv
+
+# .env 파일 로드
+load_dotenv()
 
 # ==========================================
 # 1. 설정
@@ -75,6 +79,9 @@ def estimate_jlpt_levels(batch):
 - N2: 중상급 단어 (예: 受付, コミュニケーション)
 - N1: 고급 단어 (예: デモンストレーション, 文法 표현)
 
+
+두 레벨 사이에서 고민된다면 더 높은 레벨을 선택하세요.
+예: N3와 N2 사이라면 → N2, N4와 N3 사이라면 → N3
 응답은 반드시 다음 JSON 형식으로만 작성하세요:
 [
   {{"word": "会う", "level": "N5"}},
