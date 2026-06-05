@@ -1,3 +1,9 @@
+-- 인덱스 생성
+CREATE INDEX IF NOT EXISTS idx_kanji_kanji ON tbl_kanji(kanji);
+CREATE INDEX IF NOT EXISTS idx_kanji_korean_reading ON tbl_kanji(korean_reading);
+CREATE INDEX IF NOT EXISTS idx_vocabulary_word ON tbl_vocabulary(word);
+CREATE INDEX IF NOT EXISTS idx_search_history_word_text ON tbl_search_history(word_text);
+
 -- tbl_kanji에 한자 추가
 -- 부수 및 특수 한자 추가용
 
