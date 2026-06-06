@@ -75,6 +75,9 @@ INSERT INTO tbl_kanji (
     ('豸', '갖은돼지시변 치', '갖은돼지시변 치', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('辰', '별 진', '별 진', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('酉', '닭 유, 술 유', '닭 유, 술 유', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
+    ('𠂉', '[미상 한자]', '[미상 한자]', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
+
+
 
 -- 특정 한자 데이터 수정
 UPDATE tbl_kanji SET etymology = '大(클 대) + 一(하나 일)' WHERE kanji = '立';
