@@ -3,8 +3,8 @@ DELETE FROM tbl_kanji
 WHERE id NOT IN (
     SELECT MIN(id)
     FROM tbl_kanji
-    GROUP BY kanji, korean_reading_detail, korean_reading, radical_desc_ko,
-             etymology, stroke_count_ko, radical_ja, stroke_count_ja,
+    GROUP BY kanji, korean_reading_detail, korean_reading,
+             etymology, stroke_count_ko, stroke_count_ja,
              onyomi, kunyomi, meaning_ja, level
 );
 
@@ -13,8 +13,8 @@ DELETE FROM tbl_vocabulary
 WHERE id NOT IN (
     SELECT MIN(id)
     FROM tbl_vocabulary
-    GROUP BY word, korean_reading_detail, korean_reading, radical_desc_ko,
-             etymology, stroke_count_ko, radical_ja, stroke_count_ja,
+    GROUP BY word, korean_reading_detail, korean_reading,
+             etymology, stroke_count_ko, stroke_count_ja,
              onyomi, kunyomi, meaning_ja, level
 );
 

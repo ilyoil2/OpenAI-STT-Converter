@@ -41,7 +41,7 @@ INSERT INTO tbl_kanji (
     ('弋', '주살 익', '주살 익', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
     ('卜', '점 복', '점 복', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
     ('彳', '조금걸을 척', '조금걸을 척', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
-    ('厂', '기슭 엄', '기슭 엄', NULL, '2획', NULL, NULL, NULL, NULL, NULL);
+    ('厂', '기슭 엄', '기슭 엄', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
     ('釆', '분별할 변', '분별할 변', '丿(삐침 별) + 米(쌀 미)', '7획', NULL, NULL, NULL, NULL, NULL),
     ('龍', '용 룡', '용 룡', '立(설 립) + 月(달 월) + 三(석 삼) + 彡(터럭 삼)', '16획', NULL, NULL, NULL, NULL, NULL),
     ('髟', '터럭발 표', '터럭발 표', '長(길 장) + 彡(터럭 삼)', '10획', NULL, NULL, NULL, NULL, NULL),
@@ -75,7 +75,7 @@ INSERT INTO tbl_kanji (
     ('豸', '갖은돼지시변 치', '갖은돼지시변 치', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('辰', '별 진', '별 진', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('酉', '닭 유, 술 유', '닭 유, 술 유', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
-    ('𠂉', '[미상 한자]', '[미상 한자]', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
+    ('𠂉', '[미상 한자]', '[미상 한자]', NULL, '2획', NULL, NULL, NULL, NULL, NULL);
 
 
 
