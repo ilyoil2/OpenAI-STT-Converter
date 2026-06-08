@@ -84,3 +84,4 @@ INSERT INTO tbl_kanji (
 
 -- 특정 한자 데이터 수정
 UPDATE tbl_kanji SET etymology = '大(클 대) + 一(하나 일)' WHERE kanji = '立';
+UPDATE tbl_kanji SET etymology = '⺍(작을 소) + 田(밭 전) + 十(열 십)' WHERE kanji = '単';
