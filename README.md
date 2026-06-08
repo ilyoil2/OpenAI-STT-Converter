@@ -83,12 +83,13 @@ MP3를 남기고 싶으면 `--keep-audio`를 사용합니다.
 .venv/bin/python youtube_to_srt.py "YOUTUBE_URL" -l ja -m small
 ```
 
+------------------------
+
+
 프로젝트 진행을 위해서는, 
-1. migrate
-2. kanjify_data download
-3. remove_duplicates
-4. remove 𢖻 <- 확장한자 대체 (extension_characters.md 확인)
-SELECT *
-FROM tbl_kanji
-WHERE etymology LIKE '%𢖻%';
-5. tbl_voca 단어 level 설정 (assign_jlpt_levels.py 확인)
+0. migrate
+1. kanjify_data.py 실행 : yanki 데이터 다운로드
+2. insert_kanji.sql, cleanup_data.sql 실행 : 데이터 정제
+3. extension_characters.md 실행 : 한자 수정 (글꼴 꺠진 한자 𢖻)
+4. update_jlpt_level.py 실행 : tbl_voca 단어 level 설정
+5. 4번에서 미초함 2천자 level 직접 넣어주기 (ai 활용)
