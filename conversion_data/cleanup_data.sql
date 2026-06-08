@@ -21,3 +21,5 @@ WHERE id NOT IN (
 -- tbl_vocabulary에서 stroke_count_ko가 '<div class="mean_tray">'로 시작하지 않는 레코드 삭제
 DELETE FROM tbl_vocabulary
 WHERE stroke_count_ko NOT LIKE '<div class="mean_tray">%';
+
+-- tbl_vocabulary에서 etymology 정렬해서 이상한거 삭제 (히라가나, 공백)

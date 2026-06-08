@@ -37,19 +37,29 @@ try:
         # 12개 필드 전부 추출, 부족한 경우 빈 문자열로 채움
         def f(i): return fields[i].strip() if i < len(fields) else ""
 
-        record = (
-            f(0),   # kanji              — 한자/단어 (예: 一, 右, 会う)
-            f(1),   # korean_reading_detail — 한국어 음훈 상세 (예: 한 일, 오른쪽 우/도울 우)
-            f(2),   # korean_reading     — 한국어 훈 단순 (예: 하나 일, 오른 우)
-            f(3),   # radical_desc_ko    — 부수 설명 한국어 (예: 一 (한일, 1획))
-            f(4),   # etymology          — 자원 설명, 한자가 만들어진 구성 원리
-            f(5),   # stroke_count_ko    — 획수 한국어 (예: 1획, 5획)
-            f(6),   # radical_ja         — 부수 일본어 (예: 一部（いち）)
-            f(7),   # stroke_count_ja    — 획수 일본어 (예: １画(かく))
-            f(8),   # onyomi             — 음독: 한자의 중국식 발음 유래 읽기 (예: イチ・イツ)
-            f(9),   # kunyomi            — 훈독: 한자의 일본 고유어 읽기 (예: ひと・ひとつ)
-            f(10),  # meaning_ja         — 일본어 의미 설명 (HTML 포함)
-            f(11),  # level              — 한자검정 급수 (예: １０級(きゅう))
+        kanji_record = (
+            f(0),   # kanji
+            f(1),   # korean_reading_detail
+            f(4),   # etymology
+            f(5),   # stroke_count_ko
+            f(6),   # radical_ja
+            f(8),   # onyomi
+            f(9),   # kunyomi
+            f(10),  # meaning_ja
+            f(11),  # level
+        )
+
+        vocabulary_record = (
+            f(0),   # word
+            f(1),   # korean_reading_detail
+            f(2),   # korean_reading
+            f(4),   # etymology
+            f(5),   # stroke_count_ko
+            f(7),   # stroke_count_ja
+            f(8),   # onyomi
+            f(9),   # kunyomi
+            f(10),  # meaning_ja
+            f(11),  # level
         )
 
         # 음독 또는 훈독이 있으면 개별 한자, 없으면 단어
@@ -57,9 +67,9 @@ try:
         kunyomi = f(9)
 
         if onyomi or kunyomi:
-            kanji_data.append(record)
+            kanji_data.append(kanji_record)
         else:
-            vocabulary_data.append(record)
+            vocabulary_data.append(vocabulary_record)
 
     sqlite_conn.close()
     print(f"✅ Anki에서 총 {len(rows)}개 추출 완료")
@@ -94,12 +104,9 @@ try:
         id SERIAL PRIMARY KEY,
         kanji TEXT,
         korean_reading_detail TEXT,
-        korean_reading TEXT,
-        radical_desc_ko TEXT,
         etymology TEXT,
         stroke_count_ko TEXT,
         radical_ja TEXT,
-        stroke_count_ja TEXT,
         onyomi TEXT,
         kunyomi TEXT,
         meaning_ja TEXT,
@@ -115,10 +122,8 @@ try:
         word TEXT,
         korean_reading_detail TEXT,
         korean_reading TEXT,
-        radical_desc_ko TEXT,
         etymology TEXT,
         stroke_count_ko TEXT,
-        radical_ja TEXT,
         stroke_count_ja TEXT,
         onyomi TEXT,
         kunyomi TEXT,
@@ -132,8 +137,8 @@ try:
     if kanji_data:
         insert_kanji_query = """
         INSERT INTO tbl_kanji (
-            kanji, korean_reading_detail, korean_reading, radical_desc_ko,
-            etymology, stroke_count_ko, radical_ja, stroke_count_ja,
+            kanji, korean_reading_detail,
+            etymology, stroke_count_ko, radical_ja,
             onyomi, kunyomi, meaning_ja, level
         ) VALUES %s;
         """
@@ -144,8 +149,8 @@ try:
     if vocabulary_data:
         insert_vocabulary_query = """
         INSERT INTO tbl_vocabulary (
-            word, korean_reading_detail, korean_reading, radical_desc_ko,
-            etymology, stroke_count_ko, radical_ja, stroke_count_ja,
+            word, korean_reading_detail, korean_reading,
+            etymology, stroke_count_ko, stroke_count_ja,
             onyomi, kunyomi, meaning_ja, level
         ) VALUES %s;
         """
