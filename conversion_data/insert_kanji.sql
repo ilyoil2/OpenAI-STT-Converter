@@ -75,6 +75,9 @@ INSERT INTO tbl_kanji (
     ('豸', '갖은돼지시변 치', '갖은돼지시변 치', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('辰', '별 진', '별 진', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('酉', '닭 유, 술 유', '닭 유, 술 유', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
+    ('辶', '쉬엄쉬엄 갈 착(부수 형태)', '쉬엄쉬엄 갈 착(부수 형태)', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
+    ('氵', '삼수변', '삼수변', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
+    ('辵', '쉬엄쉬엄 갈 착', '쉬엄쉬엄 갈 착', NULL, '7획', NULL, NULL, NULL, NULL, NULL),
     ('𠂉', '[미상 한자]', '[미상 한자]', NULL, '2획', NULL, NULL, NULL, NULL, NULL);
 
 
