@@ -25,6 +25,8 @@ INSERT INTO tbl_kanji (
     ('丨', '뚫을 곤', '뚫을 곤', NULL, '1획', NULL, NULL, NULL, NULL, NULL),
     ('𠂇', '왼손 좌', '왼손 좌', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
     ('䒑', '초두머리 초', '초두머리 초', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
+    ('艹', '초두머리 초', '초두머리 초', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
+    ('圥', '버섯 록', '버섯 록', NULL, '5획', NULL, NULL, NULL, NULL, NULL),
     ('尸', '주검 시', '주검 시', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
     ('屮', '왼손 좌, 싹날 철', '왼손 좌, 싹날 철', NULL, '3획', NULL, NULL, NULL, NULL, NULL),
     ('冂', '멀 경', '멀 경', NULL, '2획', NULL, NULL, NULL, NULL, NULL),
