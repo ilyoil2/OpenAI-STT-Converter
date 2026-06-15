@@ -27,7 +27,15 @@ if [ "$#" -eq 4 ]; then
   )
 fi
 
-exec yt-dlp \
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+YT_DLP="$SCRIPT_DIR/../.venv/bin/yt-dlp"
+
+if [ ! -x "$YT_DLP" ]; then
+  echo "Virtual environment not found. Run: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"
+  exit 1
+fi
+
+exec "$YT_DLP" \
   -S "res:1080" \
   -f "bv*+ba/b" \
   --merge-output-format mp4 \
