@@ -1,170 +1,245 @@
+import re
+import unicodedata
+import html as _html
+
+_JLPT_NORMAL = {10: "N5", 9: "N5", 8: "N4", 7: "N4",
+                6: "N3", 5: "N3", 4: "N2", 3: "N2", 2: "N1", 1: "N1"}
+_JLPT_JUN = {2: "N2", 1: "N1"}
+
+
+def extract_stroke_count(raw):
+    if not raw:
+        return None
+    m = re.search(r"(\d+)", unicodedata.normalize("NFKC", raw))
+    return int(m.group(1)) if m else None
+
+
+def kanji_jlpt_level(raw):
+    if not raw:
+        return None
+    s = unicodedata.normalize("NFKC", raw)
+    has_jun = "準" in s
+    m = re.search(r"(\d+)\s*級", s)
+    if not m:
+        return None
+    n = int(m.group(1))
+    return _JLPT_JUN.get(n) if has_jun else _JLPT_NORMAL.get(n)
+
+
+POS_MAP = {
+    "명사": "noun", "동사": "verb", "형용사": "adjective",
+    "な형용사": "na_adjective", "い형용사": "i_adjective",
+    "부사": "adverb", "조사": "particle", "접속사": "conjunction",
+    "감동사": "interjection", "접두사": "prefix", "접미사": "suffix",
+}
+
+
+def strip_html(raw):
+    if not raw:
+        return ""
+    s = re.sub(r"<br\s*/?>", "\n", raw, flags=re.IGNORECASE)
+    s = re.sub(r"<[^>]+>", "", s)
+    return _html.unescape(s)
+
+
+def nz(x, maxlen=None):
+    s = (x or "").strip()
+    return s[:maxlen] if maxlen else s
+
+
+def map_pos(raw):
+    t = (raw or "").strip()
+    if not t:
+        return ""
+    return POS_MAP.get(t, t)[:50]
+
+
+def split_meanings(raw):
+    text = strip_html(raw).strip()
+    if not text:
+        return []
+    parts = re.split(r"\s*\d+\.\s*", text)
+    return [p.strip() for p in parts if p.strip()]
+
+
+def word_type_and_reading(ruby, kanji_field):
+    ruby = (ruby or "").strip()
+    if ruby:
+        return "kanji", ruby[:100]
+    return "kana", (kanji_field or "").strip()[:100]
+
+
+def parse_fields(flds):
+    return flds.split("\x1f")
+
+
+def _f(fields, i):
+    return fields[i] if i < len(fields) else ""
+
+
+def build_kanji_row(fields):
+    return (
+        nz(_f(fields, 0), 10),                  # character
+        nz(_f(fields, 2)),                      # meaning_ko (훈음 일상무따)
+        nz(_f(fields, 4)),                      # components (모양자)
+        extract_stroke_count(_f(fields, 5)),    # stroke_count
+        nz(_f(fields, 8), 100),                 # on_reading (음독)
+        nz(_f(fields, 9), 100),                 # kun_reading (훈독)
+        strip_html(_f(fields, 10)).strip(),     # meaning_ja (의미, <br> 정리)
+        kanji_jlpt_level(_f(fields, 11)),       # jlpt_level (한자검정)
+        nz(_f(fields, 1)),                      # meaning_ko_detail (훈음)
+    )
+
+
+def build_word(fields):
+    raw_surface = _f(fields, 0)
+    if re.search(r"<[^>]+>", raw_surface):
+        # 센티널/템플릿 노트 (surface가 거대한 HTML 문자열) 걸러내기
+        return None
+    word_type, reading = word_type_and_reading(_f(fields, 1), _f(fields, 2))
+    head = (
+        nz(raw_surface, 100),                   # surface (단어)
+        word_type,                              # word_type
+        reading,                                # reading
+        map_pos(_f(fields, 3)),                 # pos (품사)
+        None,                                   # jlpt_level (항상 NULL)
+    )
+    meanings = split_meanings(_f(fields, 4))    # 의미
+    return head, meanings
+
+
+import os
 import sqlite3
+import argparse
 import psycopg2
 from psycopg2.extras import execute_values
 
-# ==========================================
-# 1. 설정 정보 (본인의 정보에 맞게 수정하세요)
-# ==========================================
-ANKI_DB_PATH = "./collection_extracted.anki21"  # zstd 압축 해제된 SQLite 파일
-
-PG_HOST = "localhost"
-PG_PORT = "5432"
-PG_DBNAME = "kanjify"
-PG_USER = "root"
-PG_PASSWORD = "1234"
+ANKI_DB_PATH = os.getenv("ANKI_DB_PATH", "./collection_extracted.anki21")
+KANJI_MIDS = (1730037663052, 1730045851294)
+WORD_MID = 1728981502167
 
 
-# ==========================================
-# 2. SQLite (Anki)에서 데이터 읽어오기
-# ==========================================
-print("🔄 Anki SQLite 데이터베이스 읽는 중...")
-try:
-    sqlite_conn = sqlite3.connect(ANKI_DB_PATH)
-    cursor = sqlite_conn.cursor()
-    
-    # notes 테이블에서 flds(단어묶음)와 tags(레벨 등)를 가져옵니다.
-    cursor.execute("SELECT flds, tags FROM notes")
-    rows = cursor.fetchall()
-    
-    kanji_data = []       # 개별 한자 (음독/훈독 있음)
-    vocabulary_data = []  # 단어 (음독/훈독 없음)
-
-    for row in rows:
-        flds, tags = row[0], row[1]
-
-        fields = flds.split('\x1f')
-
-        # 12개 필드 전부 추출, 부족한 경우 빈 문자열로 채움
-        def f(i): return fields[i].strip() if i < len(fields) else ""
-
-        kanji_record = (
-            f(0),   # kanji
-            f(1),   # korean_reading_detail
-            f(4),   # etymology
-            f(5),   # stroke_count_ko
-            f(6),   # radical_ja
-            f(8),   # onyomi
-            f(9),   # kunyomi
-            f(10),  # meaning_ja
-            f(11),  # level
-        )
-
-        vocabulary_record = (
-            f(0),   # word
-            f(1),   # korean_reading_detail
-            f(2),   # korean_reading
-            f(4),   # etymology
-            f(5),   # stroke_count_ko
-            f(7),   # stroke_count_ja
-            f(8),   # onyomi
-            f(9),   # kunyomi
-            f(10),  # meaning_ja
-            f(11),  # level
-        )
-
-        # 음독 또는 훈독이 있으면 개별 한자, 없으면 단어
-        onyomi = f(8)
-        kunyomi = f(9)
-
-        if onyomi or kunyomi:
-            kanji_data.append(kanji_record)
-        else:
-            vocabulary_data.append(vocabulary_record)
-
-    sqlite_conn.close()
-    print(f"✅ Anki에서 총 {len(rows)}개 추출 완료")
-    print(f"   - 개별 한자: {len(kanji_data)}개 → tbl_kanji")
-    print(f"   - 단어: {len(vocabulary_data)}개 → tbl_vocabulary")
-
-except Exception as e:
-    print(f"❌ Anki 파일 읽기 실패: {e}")
-    exit()
-
-# ==========================================
-# 3. PostgreSQL에 테이블 생성 및 데이터 삽입
-# ==========================================
-if not kanji_data and not vocabulary_data:
-    print("⚠️ 추출된 데이터가 없어 PostgreSQL 이관을 중단합니다.")
-    exit()
-
-print("🔄 PostgreSQL 연결 및 데이터 삽입 중...")
-try:
-    pg_conn = psycopg2.connect(
-        host=PG_HOST,
-        port=PG_PORT,
-        database=PG_DBNAME,
-        user=PG_USER,
-        password=PG_PASSWORD
+def pg_connect():
+    return psycopg2.connect(
+        host=os.getenv("DB_HOST", "127.0.0.1"),
+        port=os.getenv("DB_PORT", "5432"),
+        dbname=os.getenv("DB_NAME", "japavoca"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "1234"),
     )
-    pg_cursor = pg_conn.cursor()
 
-    # 3-1. tbl_kanji 테이블 생성
-    create_kanji_table = """
-    CREATE TABLE IF NOT EXISTS tbl_kanji (
-        id SERIAL PRIMARY KEY,
-        kanji TEXT,
-        korean_reading_detail TEXT,
-        etymology TEXT,
-        stroke_count_ko TEXT,
-        radical_ja TEXT,
-        onyomi TEXT,
-        kunyomi TEXT,
-        meaning_ja TEXT,
-        level TEXT
-    );
-    """
-    pg_cursor.execute(create_kanji_table)
 
-    # 3-2. tbl_vocabulary 테이블 생성
-    create_vocabulary_table = """
-    CREATE TABLE IF NOT EXISTS tbl_vocabulary (
-        id SERIAL PRIMARY KEY,
-        word TEXT,
-        korean_reading_detail TEXT,
-        korean_reading TEXT,
-        etymology TEXT,
-        stroke_count_ko TEXT,
-        stroke_count_ja TEXT,
-        onyomi TEXT,
-        kunyomi TEXT,
-        meaning_ja TEXT,
-        level TEXT
-    );
-    """
-    pg_cursor.execute(create_vocabulary_table)
+def read_anki():
+    conn = sqlite3.connect(ANKI_DB_PATH)
+    cur = conn.cursor()
+    kanji_rows, word_units = [], []
+    cur.execute("SELECT mid, flds FROM notes")
+    for mid, flds in cur.fetchall():
+        fields = parse_fields(flds)
+        try:
+            if mid in KANJI_MIDS:
+                row = build_kanji_row(fields)
+                if row[0]:  # character 필수
+                    kanji_rows.append(row)
+            elif mid == WORD_MID:
+                built = build_word(fields)
+                if built is None:  # 센티널/템플릿 노트 (HTML surface) 스킵
+                    continue
+                head, meanings = built
+                if head[0]:  # surface 필수
+                    word_units.append((head, meanings))
+        except Exception as e:  # 단건 실패는 스킵
+            print(f"⚠️ 파싱 스킵 (mid={mid}): {e}")
+    conn.close()
+    return kanji_rows, word_units
 
-    # 3-3. 개별 한자 데이터 삽입
-    if kanji_data:
-        insert_kanji_query = """
-        INSERT INTO tbl_kanji (
-            kanji, korean_reading_detail,
-            etymology, stroke_count_ko, radical_ja,
-            onyomi, kunyomi, meaning_ja, level
-        ) VALUES %s;
+
+def insert_kanji(cur, kanji_rows):
+    execute_values(
+        cur,
         """
-        execute_values(pg_cursor, insert_kanji_query, kanji_data)
-        print(f"✅ tbl_kanji에 {len(kanji_data)}개 삽입 완료")
+        INSERT INTO tbl_content_kanji
+          (character, meaning_ko, components, stroke_count, on_reading,
+           kun_reading, meaning_ja, jlpt_level, meaning_ko_detail, created_at)
+        VALUES %s
+        ON CONFLICT (character) DO NOTHING
+        """,
+        kanji_rows,
+        template="(%s,%s,%s,%s,%s,%s,%s,%s,%s, now())",
+    )
 
-    # 3-4. 단어 데이터 삽입
-    if vocabulary_data:
-        insert_vocabulary_query = """
-        INSERT INTO tbl_vocabulary (
-            word, korean_reading_detail, korean_reading,
-            etymology, stroke_count_ko, stroke_count_ja,
-            onyomi, kunyomi, meaning_ja, level
-        ) VALUES %s;
+
+def insert_words(cur, word_units):
+    heads = [u[0] for u in word_units]
+    # NOTE: this INSERT has no ON CONFLICT clause, so PostgreSQL guarantees
+    # RETURNING id comes back in the same order as the VALUES list. That is
+    # what makes the positional zip(word_ids, word_units) below correct —
+    # if ON CONFLICT is ever added to this word insert, rows can be skipped
+    # and the ids/word_units pairing will silently misalign.
+    rows = execute_values(
+        cur,
         """
-        execute_values(pg_cursor, insert_vocabulary_query, vocabulary_data)
-        print(f"✅ tbl_vocabulary에 {len(vocabulary_data)}개 삽입 완료")
+        INSERT INTO tbl_content_word
+          (surface, word_type, reading, pos, jlpt_level, created_at)
+        VALUES %s
+        RETURNING id
+        """,
+        heads,
+        template="(%s,%s,%s,%s,%s, now())",
+        fetch=True,
+    )
+    word_ids = [r[0] for r in rows]
+    meaning_rows = []
+    for word_id, (_, meanings) in zip(word_ids, word_units):
+        for i, mk in enumerate(meanings, start=1):
+            meaning_rows.append((word_id, i, mk, ""))
+    if meaning_rows:
+        execute_values(
+            cur,
+            """
+            INSERT INTO tbl_content_wordmeaning
+              (word_id, sense_no, meaning_ko, note, created_at)
+            VALUES %s
+            ON CONFLICT (word_id, sense_no) DO NOTHING
+            """,
+            meaning_rows,
+            template="(%s,%s,%s,%s, now())",
+        )
+    return len(meaning_rows)
 
-    pg_conn.commit()
-    print("🎉 PostgreSQL로 데이터 이관이 완전히 끝났습니다!")
 
-except Exception as e:
-    print(f"❌ PostgreSQL 작업 실패: {e}")
-    if pg_conn:
-        pg_conn.rollback()
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
 
-finally:
-    if pg_cursor: pg_cursor.close()
-    if pg_conn: pg_conn.close()
+    print("🔄 Anki 읽는 중...")
+    kanji_rows, word_units = read_anki()
+    print(f"   한자 {len(kanji_rows)}건 / 단어 {len(word_units)}건")
+
+    if args.dry_run:
+        print("\n[DRY-RUN] 한자 샘플 3건:")
+        for r in kanji_rows[:3]:
+            print("  ", r)
+        print("[DRY-RUN] 단어 샘플 3건:")
+        for u in word_units[:3]:
+            print("  ", u)
+        return
+
+    conn = pg_connect()
+    cur = conn.cursor()
+    try:
+        insert_kanji(cur, kanji_rows)
+        n_meanings = insert_words(cur, word_units)
+        conn.commit()
+        print(f"✅ 한자 {len(kanji_rows)} / 단어 {len(word_units)} / 뜻 {n_meanings} 적재 완료")
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
+if __name__ == "__main__":
+    main()
