@@ -109,8 +109,9 @@ pt_levels.py 확인)
 
 프로젝트 진행을 위해서는, 
 0. migrate
-1. kanjify_data.py 실행 : yanki 데이터 다운로드
-2. insert_kanji.sql, cleanup_data.sql 실행 : 데이터 정제
-3. extension_characters.md 실행 : 한자 수정 (글꼴 꺠진 한자 𢖻)
-4. update_jlpt_level.py 실행 : tbl_voca 단어 level 설정
-5. 4번에서 미초함 2천자 level 직접 넣어주기 (ai 활용)
+1. kanjify_data.py 실행 : Anki 데이터를 읽어 japavoca content 테이블(tbl_content_kanji, tbl_content_word, tbl_content_wordmeaning)에 적재
+2. insert_kanji.sql 실행 : 부수/특수 한자 등 보충 데이터 추가 적재
+3. cleanup_data.sql 실행 : 중복 데이터 정리
+4. extension_characters.md 실행 : 한자 수정 (글꼴 꺠진 한자 𢖻)
+
+단어(tbl_content_word)의 jlpt_level은 의도적으로 NULL로 둡니다.
