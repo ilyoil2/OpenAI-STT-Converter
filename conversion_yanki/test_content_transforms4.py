@@ -1,4 +1,4 @@
-from kanjify_data import extract_stroke_count, kanji_jlpt_level
+from kanjify_data1 import extract_stroke_count, kanji_jlpt_level
 
 
 def test_extract_stroke_count_basic():
@@ -28,7 +28,7 @@ def test_kanji_jlpt_level_unmapped():
     assert kanji_jlpt_level("급외") is None
 
 
-from kanjify_data import strip_html, extract_part_speech, nz
+from kanjify_data1 import strip_html, extract_part_speech, nz
 
 
 def test_strip_html_br():
@@ -65,7 +65,7 @@ def test_nz():
     assert nz("abcdef", 3) == "abc"
 
 
-from kanjify_data import split_meanings, word_type_and_reading
+from kanjify_data1 import split_meanings, word_type_and_reading
 
 
 def test_split_meanings_numbered():
@@ -86,7 +86,7 @@ def test_word_type_kana():
     assert word_type_and_reading("", "") == ("kana", "")
 
 
-from kanjify_data import parse_fields, build_kanji_row, build_word
+from kanjify_data1 import parse_fields, build_kanji_row, build_word
 
 KANJI_FLDS = "\x1f".join([
     "一", "한 일", "하나 일", "一부", "一(한 일)", "1획",

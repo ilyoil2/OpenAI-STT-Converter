@@ -79,3 +79,5 @@ ON CONFLICT (character) DO NOTHING;
 -- 특정 한자 데이터 수정
 UPDATE tbl_content_kanji SET components = '大(클 대) + 一(하나 일)' WHERE character = '立';
 UPDATE tbl_content_kanji SET components = '⺍(작을 소) + 田(밭 전) + 十(열 십)' WHERE character = '単';
+UPDATE tbl_content_kanji SET components = '五(다섯 오)' WHERE character = '五';
+UPDATE tbl_content_kanji SET components = '幺(작을 요) + 白(흰 백) + 木(나무 목)' WHERE character = '楽';
