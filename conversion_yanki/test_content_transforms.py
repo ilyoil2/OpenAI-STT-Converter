@@ -28,7 +28,7 @@ def test_kanji_jlpt_level_unmapped():
     assert kanji_jlpt_level("급외") is None
 
 
-from kanjify_data import strip_html, map_pos, nz
+from kanjify_data import strip_html, extract_part_speech, nz
 
 
 def test_strip_html_br():
@@ -41,16 +41,23 @@ def test_strip_html_empty():
     assert strip_html("") == ""
     assert strip_html(None) == ""
 
-def test_map_pos_known():
-    assert map_pos("명사") == "noun"
-    assert map_pos("동사") == "verb"
+def test_extract_part_speech_basic():
+    html = "<div class='part_area'><em class='part_speech'>5단활용 자동사</em></div>"
+    assert extract_part_speech(html) == "5단활용 자동사"
 
-def test_map_pos_compound_passthrough():
-    assert map_pos("명사 동사") == "명사 동사"
+def test_extract_part_speech_korean_verbatim():
+    html = "<em class='part_speech'>명사, ス타동사</em>"
+    assert extract_part_speech(html) == "명사, ス타동사"
 
-def test_map_pos_empty():
-    assert map_pos("") == ""
-    assert map_pos(None) == ""
+def test_extract_part_speech_first_when_multiple():
+    html = ("<em class='part_speech'>5단활용 자동사</em>"
+            "<em class='part_speech'>4단활용 자동사</em>")
+    assert extract_part_speech(html) == "5단활용 자동사"
+
+def test_extract_part_speech_empty():
+    assert extract_part_speech("") == ""
+    assert extract_part_speech(None) == ""
+    assert extract_part_speech("<div class='mean_tray'>뜻</div>") == ""
 
 def test_nz():
     assert nz(None) == ""
@@ -85,7 +92,10 @@ KANJI_FLDS = "\x1f".join([
     "一", "한 일", "하나 일", "一부", "一(한 일)", "1획",
     "일본부수", "1画", "イチ・イツ", "ひと", "뜻1<br>뜻2", "１０級(きゅう)",
 ])
-WORD_FLDS = "\x1f".join(["会う", "あう", "", "동사", "1. 만나다 2. 대면하다", "예문HTML", "1"])
+WORD_FLDS = "\x1f".join([
+    "会う", "あう", "", "동사", "1. 만나다 2. 대면하다",
+    "<div class='part_area'><em class='part_speech'>5단활용 자동사</em></div>", "1",
+])
 
 
 def test_parse_fields():
@@ -98,7 +108,7 @@ def test_build_kanji_row():
 
 def test_build_word():
     head, meanings = build_word(parse_fields(WORD_FLDS))
-    assert head == ("会う", "kanji", "あう", "verb", None)
+    assert head == ("会う", "kanji", "あう", "5단활용 자동사", None)
     assert meanings == ["만나다", "대면하다"]
 
 def test_build_word_rejects_html_surface():

@@ -26,14 +26,6 @@ def kanji_jlpt_level(raw):
     return _JLPT_JUN.get(n) if has_jun else _JLPT_NORMAL.get(n)
 
 
-POS_MAP = {
-    "명사": "noun", "동사": "verb", "형용사": "adjective",
-    "な형용사": "na_adjective", "い형용사": "i_adjective",
-    "부사": "adverb", "조사": "particle", "접속사": "conjunction",
-    "감동사": "interjection", "접두사": "prefix", "접미사": "suffix",
-}
-
-
 def strip_html(raw):
     if not raw:
         return ""
@@ -47,11 +39,16 @@ def nz(x, maxlen=None):
     return s[:maxlen] if maxlen else s
 
 
-def map_pos(raw):
-    t = (raw or "").strip()
-    if not t:
+def extract_part_speech(html):
+    # field 5(예문 HTML)의 <em class='part_speech'>...</em> 안 텍스트를
+    # 그대로(한국어 그대로) 추출. 여러 개면 첫 번째. 없으면 ''.
+    if not html:
         return ""
-    return POS_MAP.get(t, t)[:50]
+    m = re.search(r"<em[^>]*class=['\"]part_speech['\"][^>]*>(.*?)</em>",
+                  html, re.S)
+    if not m:
+        return ""
+    return strip_html(m.group(1)).strip()[:50]
 
 
 def split_meanings(raw):
@@ -101,7 +98,7 @@ def build_word(fields):
         nz(raw_surface, 100),                   # surface (단어)
         word_type,                              # word_type
         reading,                                # reading
-        map_pos(_f(fields, 3)),                 # pos (품사)
+        extract_part_speech(_f(fields, 5)),     # pos (part_speech 원문)
         None,                                   # jlpt_level (항상 NULL)
     )
     meanings = split_meanings(_f(fields, 4))    # 의미
