@@ -157,12 +157,12 @@ def insert_kanji(cur, kanji_rows):
         """
         INSERT INTO tbl_content_kanji
           (character, meaning_ko, components, stroke_count, on_reading,
-           kun_reading, meaning_ja, jlpt_level, meaning_ko_detail, created_at)
+           kun_reading, meaning_ja, jlpt_level, meaning_ko_detail)
         VALUES %s
         ON CONFLICT (character) DO NOTHING
         """,
         kanji_rows,
-        template="(%s,%s,%s,%s,%s,%s,%s,%s,%s, now())",
+        template="(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
     )
 
 
@@ -177,12 +177,12 @@ def insert_words(cur, word_units):
         cur,
         """
         INSERT INTO tbl_content_word
-          (surface, word_type, reading, pos, jlpt_level, created_at)
+          (surface, word_type, reading, pos, jlpt_level)
         VALUES %s
         RETURNING id
         """,
         heads,
-        template="(%s,%s,%s,%s,%s, now())",
+        template="(%s,%s,%s,%s,%s)",
         fetch=True,
     )
     word_ids = [r[0] for r in rows]
@@ -195,12 +195,12 @@ def insert_words(cur, word_units):
             cur,
             """
             INSERT INTO tbl_content_wordmeaning
-              (word_id, sense_no, meaning_ko, note, created_at)
+              (word_id, sense_no, meaning_ko, note)
             VALUES %s
             ON CONFLICT (word_id, sense_no) DO NOTHING
             """,
             meaning_rows,
-            template="(%s,%s,%s,%s, now())",
+            template="(%s,%s,%s,%s)",
         )
     return len(meaning_rows)
 
