@@ -118,11 +118,11 @@ WORD_MID = 1728981502167
 
 def pg_connect():
     return psycopg2.connect(
-        host=os.getenv("DB_HOST", "127.0.0.1"),
-        port=os.getenv("DB_PORT", "5432"),
-        dbname=os.getenv("DB_NAME", "japavoca"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", "1234"),
+        host=os.getenv("DB_HOST", "aws-1-ap-northeast-2.pooler.supabase.com"),
+        port=os.getenv("DB_PORT", "6543"),
+        dbname=os.getenv("DB_NAME", "postgres"),
+        user=os.getenv("DB_USER", "postgres.vqztavgyegwuupmsgpnj"),
+        password=os.getenv("DB_PASSWORD", "japavocapass1"),
     )
 
 

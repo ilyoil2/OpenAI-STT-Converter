@@ -15,11 +15,11 @@ import sqlite3
 import psycopg2
 
 DB_CONFIG = {
-    "dbname": "japavoca",
-    "user": "root",
-    "password": "1234",
-    "host": "127.0.0.1",
-    "port": 5432,
+    "dbname": "postgres",
+    "user": "postgres.vqztavgyegwuupmsgpnj",
+    "password": "japavocapass1",
+    "host": "aws-1-ap-northeast-2.pooler.supabase.com",
+    "port": 6543,
 }
 
 WORD_LEVEL_DIR = os.path.join(os.path.dirname(__file__), "word-level-data")

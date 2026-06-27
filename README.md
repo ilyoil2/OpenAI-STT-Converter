@@ -95,23 +95,15 @@ MP3를 남기고 싶으면 `--keep-audio`를 사용합니다.
 
 `-o`를 생략하면 SRT는 `saves/YYYY-MM-DD_파일명.srt` 형식으로 저장됩니다.
 
-프로젝트 진행을 위해서는, 
-1. migrate
-2. kanjify_data download
-3. remove_duplicates
-4. remove 𢖻 <- 확장한자 대체 (extension_characters.md 확인)
-SELECT *
-FROM tbl_kanji
-WHERE etymology LIKE '%𢖻%';
-5. tbl_voca 단어 level 설정 (assign_jlpt_levels.py 확인)
-pt_levels.py 확인)
 
 
-프로젝트 진행을 위해서는, 
-0. migrate
-1. kanjify_data.py 실행 : Anki 데이터를 읽어 japavoca content 테이블(tbl_content_kanji, tbl_content_word, tbl_content_wordmeaning)에 적재
+1. kanjify_data1.py 실행 : Anki 데이터를 읽어 japavoca content 테이블(tbl_content_kanji, tbl_content_word, tbl_content_wordmeaning)에 적재
 2. insert_kanji.sql 실행 : 부수/특수 한자 등 보충 데이터 추가 적재
 3. cleanup_data.sql 실행 : 중복 데이터 정리
 4. extension_characters.md 실행 : 한자 수정 (글꼴 꺠진 한자 𢖻)
 
-단어(tbl_content_word)의 jlpt_level은 의도적으로 NULL로 둡니다.
+
+1. kanjify_data1.py
+2. insert_kanji2.sql
+3. cleanup_data3.sql
+4. set_jlpt_level4.py
