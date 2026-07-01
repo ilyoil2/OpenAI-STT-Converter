@@ -1029,9 +1029,13 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ヒューマン', '', '휴먼', (SELECT id FROM tbl_content_kana WHERE character = 'ヒュ' AND script = 'kata')),
   ('ヒューズ', '', '퓨즈', (SELECT id FROM tbl_content_kana WHERE character = 'ヒュ' AND script = 'kata')),
 
+  ('ヒョウ', '', '표범', (SELECT id FROM tbl_content_kana WHERE character = 'ヒョ' AND script = 'kata')),
+
   ('ミュージアム', '', '박물관', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
   ('ミュージック', '', '음악', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
   ('コミュニケーション', '', '커뮤니케이션', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
+
+  ('リャマ', '', '라마(동물)', (SELECT id FROM tbl_content_kana WHERE character = 'リャ' AND script = 'kata')),
 
   ('リュック', '', '배낭', (SELECT id FROM tbl_content_kana WHERE character = 'リュ' AND script = 'kata')),
   ('リュージュ', '', '루지(경기)', (SELECT id FROM tbl_content_kana WHERE character = 'リュ' AND script = 'kata')),
