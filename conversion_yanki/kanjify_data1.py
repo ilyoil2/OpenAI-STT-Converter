@@ -39,6 +39,18 @@ def nz(x, maxlen=None):
     return s[:maxlen] if maxlen else s
 
 
+def normalize_meaning_ko(raw):
+    # meaning_ko/meaning_ko_detail(훈음)의 구분자를 · 로 통일.
+    # 콤마(,)와 원문자(①②③...)를 모두 · 로 바꿔 하나의 평평한(flat)
+    # 목록으로 만든다. ①②로 큰 뜻을 묶고 그 안을 ·로 나누던 계층
+    # 구조는 사라지지만, 표기 방식을 하나로 통일하기 위한 결정이다.
+    s = (raw or "").strip()
+    s = re.sub(r"\s*,\s*", " · ", s)
+    s = re.sub(r"[①-⑳]\s*", " · ", s)
+    s = re.sub(r"\s*·\s*", " · ", s)
+    return s.strip(" ·").strip()
+
+
 def extract_part_speech(html):
     # field 5(예문 HTML)의 <em class='part_speech'>...</em> 안 텍스트를
     # 그대로(한국어 그대로) 추출. 여러 개면 첫 번째. 없으면 ''.
@@ -49,6 +61,52 @@ def extract_part_speech(html):
     if not m:
         return ""
     return strip_html(m.group(1)).strip()[:50]
+
+
+MAX_EXAMPLES = 3
+
+
+def _origin_forms(origin_raw):
+    # <p class='origin'>의 ruby 문장에서 두 형태를 만든다.
+    #   o(한자표기): rt(후리가나)만 떼어냄 → 金塊を土の中に埋める
+    #   r(가나읽기): <ruby><rb>..</rb><rt>Y</rt></ruby>를 Y로 치환 → きんかいを…
+    # 뒤에 붙는 [anki:tts ...] 꼬리는 버린다(한자표기와 사실상 동일하지만
+    # 잔여 공백 등이 섞여 있어 ruby에서 직접 만드는 편이 깔끔하다).
+    s = re.sub(r"<!--TTS-->.*", "", origin_raw, flags=re.S)
+
+    def clean(x):
+        x = re.sub(r"<[^>]+>", "", x)
+        x = _html.unescape(x)
+        return re.sub(r"\s+", "", x).strip()   # 일본어 문장 내 공백/개행 제거
+
+    kanji = clean(re.sub(r"<rt>.*?</rt>", "", s))
+    reading = clean(
+        re.sub(r"<ruby>\s*<rb>.*?</rb>\s*<rt>(.*?)</rt>\s*</ruby>", r"\1",
+               s, flags=re.S))
+    return kanji, reading
+
+
+def extract_examples(html, limit=MAX_EXAMPLES):
+    # field 5(예문 HTML)에서 예문을 최대 limit개 추출.
+    # 각 example_item은 <p class='origin'>(일본어)과 <p class='translate'>(한국어)
+    # 로 이뤄진다. origin에는 한자+후리가나(ruby) 문장 하나만 들어있고, 별도의
+    # 히라가나 문장은 없다. 그래서 한자표기(o)와 가나읽기(r)를 ruby에서 직접
+    # 만들어 둘 다 저장한다.
+    if not html:
+        return []
+    out = []
+    for m in re.finditer(
+        r'<p class="origin[^"]*">(.*?)</p>\s*<p class="translate">(.*?)</p>',
+        html, re.S,
+    ):
+        origin_raw, trans_raw = m.group(1), m.group(2)
+        kanji, reading = _origin_forms(origin_raw)
+        trans = re.sub(r"\s+", " ", strip_html(trans_raw)).strip()
+        if kanji and trans:
+            out.append({"o": kanji, "r": reading, "t": trans})
+            if len(out) >= limit:
+                break
+    return out
 
 
 def split_meanings(raw):
@@ -77,14 +135,14 @@ def _f(fields, i):
 def build_kanji_row(fields):
     return (
         nz(_f(fields, 0), 10),                  # character
-        nz(_f(fields, 2)),                      # meaning_ko (훈음 일상무따)
+        normalize_meaning_ko(nz(_f(fields, 2))),  # meaning_ko (훈음 일상무따)
         nz(_f(fields, 4)),                      # components (모양자)
         extract_stroke_count(_f(fields, 5)),    # stroke_count
         nz(_f(fields, 8), 100),                 # on_reading (음독)
         nz(_f(fields, 9), 100),                 # kun_reading (훈독)
         strip_html(_f(fields, 10)).strip(),     # meaning_ja (의미, <br> 정리)
         kanji_jlpt_level(_f(fields, 11)),       # jlpt_level (한자검정)
-        nz(_f(fields, 1)),                      # meaning_ko_detail (훈음)
+        normalize_meaning_ko(nz(_f(fields, 1))),  # meaning_ko_detail (훈음)
     )
 
 
@@ -102,7 +160,9 @@ def build_word(fields):
         None,                                   # jlpt_level (항상 NULL)
     )
     meanings = split_meanings(_f(fields, 4))    # 의미
-    return head, meanings
+    # 예문은 가나 단어에 한해서만 추출. 한자 단어는 빈 리스트.
+    examples = extract_examples(_f(fields, 5)) if word_type == "kana" else []
+    return head, meanings, examples
 
 
 import os
@@ -142,9 +202,9 @@ def read_anki():
                 built = build_word(fields)
                 if built is None:  # 센티널/템플릿 노트 (HTML surface) 스킵
                     continue
-                head, meanings = built
+                head, meanings, examples = built
                 if head[0]:  # surface 필수
-                    word_units.append((head, meanings))
+                    word_units.append((head, meanings, examples))
         except Exception as e:  # 단건 실패는 스킵
             print(f"⚠️ 파싱 스킵 (mid={mid}): {e}")
     conn.close()
@@ -166,7 +226,26 @@ def insert_kanji(cur, kanji_rows):
     )
 
 
+def ensure_example_table(cur):
+    # 가나 단어 예문 저장용 테이블. 없으면 만든다. (tbl_content_wordmeaning과 동일 패턴)
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS tbl_content_wordexample (
+            id serial PRIMARY KEY,
+            word_id integer NOT NULL
+                REFERENCES tbl_content_word(id) ON DELETE CASCADE,
+            sort_no integer NOT NULL,
+            origin text NOT NULL,   -- 한자표기 일본어 문장
+            reading text,           -- 가나읽기
+            translation text,       -- 한국어 번역
+            UNIQUE (word_id, sort_no)
+        )
+        """
+    )
+
+
 def insert_words(cur, word_units):
+    ensure_example_table(cur)
     heads = [u[0] for u in word_units]
     # NOTE: this INSERT has no ON CONFLICT clause, so PostgreSQL guarantees
     # RETURNING id comes back in the same order as the VALUES list. That is
@@ -187,9 +266,12 @@ def insert_words(cur, word_units):
     )
     word_ids = [r[0] for r in rows]
     meaning_rows = []
-    for word_id, (_, meanings) in zip(word_ids, word_units):
+    example_rows = []
+    for word_id, (_, meanings, examples) in zip(word_ids, word_units):
         for i, mk in enumerate(meanings, start=1):
             meaning_rows.append((word_id, i, mk, ""))
+        for j, ex in enumerate(examples, start=1):
+            example_rows.append((word_id, j, ex["o"], ex["r"], ex["t"]))
     if meaning_rows:
         execute_values(
             cur,
@@ -202,7 +284,19 @@ def insert_words(cur, word_units):
             meaning_rows,
             template="(%s,%s,%s,%s)",
         )
-    return len(meaning_rows)
+    if example_rows:
+        execute_values(
+            cur,
+            """
+            INSERT INTO tbl_content_wordexample
+              (word_id, sort_no, origin, reading, translation)
+            VALUES %s
+            ON CONFLICT (word_id, sort_no) DO NOTHING
+            """,
+            example_rows,
+            template="(%s,%s,%s,%s,%s)",
+        )
+    return len(meaning_rows), len(example_rows)
 
 
 def main():
@@ -227,9 +321,10 @@ def main():
     cur = conn.cursor()
     try:
         insert_kanji(cur, kanji_rows)
-        n_meanings = insert_words(cur, word_units)
+        n_meanings, n_examples = insert_words(cur, word_units)
         conn.commit()
-        print(f"✅ 한자 {len(kanji_rows)} / 단어 {len(word_units)} / 뜻 {n_meanings} 적재 완료")
+        print(f"✅ 한자 {len(kanji_rows)} / 단어 {len(word_units)} / "
+              f"뜻 {n_meanings} / 예문 {n_examples} 적재 완료")
     except Exception:
         conn.rollback()
         raise
