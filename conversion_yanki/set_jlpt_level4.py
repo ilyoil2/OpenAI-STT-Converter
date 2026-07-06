@@ -11,6 +11,7 @@ Usage:
 """
 import sys
 import os
+import re
 import sqlite3
 import psycopg2
 
@@ -41,16 +42,37 @@ def load_anki_words(anki_path: str) -> set[str]:
     return {row[0].strip() for row in rows if row[0].strip()}
 
 
+def _variant_forms(text: str) -> set[str]:
+    # 하나의 표기 문자열에서 매칭 후보를 만든다.
+    # DB reading은 여러 한자표기를 ·/・ 로 묶어두는 경우가 있고(예:
+    # '良い·善い·好い'), 파일은 그중 하나만 담고 있어 완전일치가 깨진다.
+    # /(슬래시)로 대체표기를 나열하는 경우도 함께 분해한다.
+    if not text:
+        return set()
+    return {p.strip() for p in re.split(r"[·・/]", text) if p.strip()}
+
+
 def update_jlpt_level(level: str, words: set[str], dry_run: bool = False) -> None:
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor()
 
-    cur.execute("SELECT id, surface FROM tbl_content_word")
+    cur.execute("SELECT id, surface, reading FROM tbl_content_word")
     all_words = cur.fetchall()
-    db_surface_map = {row[1]: row[0] for row in all_words}
 
-    matched_ids = [db_surface_map[w] for w in words if w in db_surface_map]
-    unmatched = words - db_surface_map.keys()
+    # DB 단어별로 매칭 후보(surface + reading의 ·/・// 분해 형태)를 만들어
+    # 파일 단어 집합과 교집합이 있으면 매칭으로 본다. surface 완전일치뿐 아니라
+    # 가나 surface ↔ 한자 reading, 여러 표기 중 하나만 일치하는 경우까지 잡는다.
+    matched_ids = []
+    matched_words: set[str] = set()
+    for wid, surface, reading in all_words:
+        forms = _variant_forms(surface) | _variant_forms(reading)
+        if surface:
+            forms.add(surface.strip())
+        hits = forms & words
+        if hits:
+            matched_ids.append(wid)
+            matched_words |= hits
+    unmatched = words - matched_words
 
     print(f"  파일 단어 수:      {len(words)}")
     print(f"  매칭된 단어 수:    {len(matched_ids)}")

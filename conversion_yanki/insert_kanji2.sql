@@ -306,22 +306,32 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('あか', '赤', '빨강', (SELECT id FROM tbl_content_kana WHERE character = 'あ' AND script = 'hira')),
   ('あさ', '朝', '아침', (SELECT id FROM tbl_content_kana WHERE character = 'あ' AND script = 'hira')),
   ('あめ', '雨', '비', (SELECT id FROM tbl_content_kana WHERE character = 'あ' AND script = 'hira')),
+  ('あし', '足', '발', (SELECT id FROM tbl_content_kana WHERE character = 'あ' AND script = 'hira')),
+  ('あき', '秋', '가을', (SELECT id FROM tbl_content_kana WHERE character = 'あ' AND script = 'hira')),
 
   ('いえ', '家', '집', (SELECT id FROM tbl_content_kana WHERE character = 'い' AND script = 'hira')),
   ('いぬ', '犬', '개', (SELECT id FROM tbl_content_kana WHERE character = 'い' AND script = 'hira')),
   ('いろ', '色', '색', (SELECT id FROM tbl_content_kana WHERE character = 'い' AND script = 'hira')),
+  ('いし', '石', '돌', (SELECT id FROM tbl_content_kana WHERE character = 'い' AND script = 'hira')),
+  ('いち', '一', '하나(1)', (SELECT id FROM tbl_content_kana WHERE character = 'い' AND script = 'hira')),
 
   ('うみ', '海', '바다', (SELECT id FROM tbl_content_kana WHERE character = 'う' AND script = 'hira')),
   ('うた', '歌', '노래', (SELECT id FROM tbl_content_kana WHERE character = 'う' AND script = 'hira')),
   ('うで', '腕', '팔', (SELECT id FROM tbl_content_kana WHERE character = 'う' AND script = 'hira')),
+  ('うし', '牛', '소', (SELECT id FROM tbl_content_kana WHERE character = 'う' AND script = 'hira')),
+  ('うえ', '上', '위', (SELECT id FROM tbl_content_kana WHERE character = 'う' AND script = 'hira')),
 
   ('えき', '駅', '역', (SELECT id FROM tbl_content_kana WHERE character = 'え' AND script = 'hira')),
   ('えいが', '映画', '영화', (SELECT id FROM tbl_content_kana WHERE character = 'え' AND script = 'hira')),
   ('えんぴつ', '鉛筆', '연필', (SELECT id FROM tbl_content_kana WHERE character = 'え' AND script = 'hira')),
+  ('え', '絵', '그림', (SELECT id FROM tbl_content_kana WHERE character = 'え' AND script = 'hira')),
+  ('えん', '円', '엔(화폐)', (SELECT id FROM tbl_content_kana WHERE character = 'え' AND script = 'hira')),
 
   ('おと', '音', '소리', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira')),
   ('おんがく', '音楽', '음악', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira')),
-  ('おおい', '多い', '많다', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira'))
+  ('おおい', '多い', '많다', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira')),
+  ('おかね', 'お金', '돈', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira')),
+  ('おちゃ', 'お茶', '차', (SELECT id FROM tbl_content_kana WHERE character = 'お' AND script = 'hira'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
 
@@ -330,164 +340,247 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('かお', '顔', '얼굴', (SELECT id FROM tbl_content_kana WHERE character = 'か' AND script = 'hira')),
   ('かさ', '傘', '우산', (SELECT id FROM tbl_content_kana WHERE character = 'か' AND script = 'hira')),
   ('かわ', '川', '강', (SELECT id FROM tbl_content_kana WHERE character = 'か' AND script = 'hira')),
+  ('かみ', '紙', '종이', (SELECT id FROM tbl_content_kana WHERE character = 'か' AND script = 'hira')),
+  ('かう', '買う', '사다', (SELECT id FROM tbl_content_kana WHERE character = 'か' AND script = 'hira')),
 
   ('きせつ', '季節', '계절', (SELECT id FROM tbl_content_kana WHERE character = 'き' AND script = 'hira')),
   ('きいろ', '黄色', '노랑', (SELECT id FROM tbl_content_kana WHERE character = 'き' AND script = 'hira')),
   ('きた', '北', '북쪽', (SELECT id FROM tbl_content_kana WHERE character = 'き' AND script = 'hira')),
+  ('き', '木', '나무', (SELECT id FROM tbl_content_kana WHERE character = 'き' AND script = 'hira')),
+  ('きって', '切手', '우표', (SELECT id FROM tbl_content_kana WHERE character = 'き' AND script = 'hira')),
 
   ('くつ', '靴', '신발', (SELECT id FROM tbl_content_kana WHERE character = 'く' AND script = 'hira')),
   ('くも', '雲', '구름', (SELECT id FROM tbl_content_kana WHERE character = 'く' AND script = 'hira')),
   ('くるま', '車', '자동차', (SELECT id FROM tbl_content_kana WHERE character = 'く' AND script = 'hira')),
+  ('くち', '口', '입', (SELECT id FROM tbl_content_kana WHERE character = 'く' AND script = 'hira')),
+  ('くに', '国', '나라', (SELECT id FROM tbl_content_kana WHERE character = 'く' AND script = 'hira')),
 
   ('けさ', '今朝', '오늘 아침', (SELECT id FROM tbl_content_kana WHERE character = 'け' AND script = 'hira')),
   ('けしき', '景色', '경치', (SELECT id FROM tbl_content_kana WHERE character = 'け' AND script = 'hira')),
   ('けいかく', '計画', '계획', (SELECT id FROM tbl_content_kana WHERE character = 'け' AND script = 'hira')),
+  ('けいたい', '携帯', '휴대폰', (SELECT id FROM tbl_content_kana WHERE character = 'け' AND script = 'hira')),
+  ('けっこん', '結婚', '결혼', (SELECT id FROM tbl_content_kana WHERE character = 'け' AND script = 'hira')),
 
   ('こども', '子供', '아이', (SELECT id FROM tbl_content_kana WHERE character = 'こ' AND script = 'hira')),
   ('こえ', '声', '목소리', (SELECT id FROM tbl_content_kana WHERE character = 'こ' AND script = 'hira')),
   ('こおり', '氷', '얼음', (SELECT id FROM tbl_content_kana WHERE character = 'こ' AND script = 'hira')),
+  ('ことば', '言葉', '말', (SELECT id FROM tbl_content_kana WHERE character = 'こ' AND script = 'hira')),
+  ('こめ', '米', '쌀', (SELECT id FROM tbl_content_kana WHERE character = 'こ' AND script = 'hira')),
 
   ('さかな', '魚', '물고기', (SELECT id FROM tbl_content_kana WHERE character = 'さ' AND script = 'hira')),
   ('さくら', '桜', '벚꽃', (SELECT id FROM tbl_content_kana WHERE character = 'さ' AND script = 'hira')),
   ('さむい', '寒い', '춥다', (SELECT id FROM tbl_content_kana WHERE character = 'さ' AND script = 'hira')),
+  ('さいふ', '財布', '지갑', (SELECT id FROM tbl_content_kana WHERE character = 'さ' AND script = 'hira')),
+  ('さとう', '砂糖', '설탕', (SELECT id FROM tbl_content_kana WHERE character = 'さ' AND script = 'hira')),
 
   ('しごと', '仕事', '일', (SELECT id FROM tbl_content_kana WHERE character = 'し' AND script = 'hira')),
   ('しお', '塩', '소금', (SELECT id FROM tbl_content_kana WHERE character = 'し' AND script = 'hira')),
   ('しろ', '白', '하양', (SELECT id FROM tbl_content_kana WHERE character = 'し' AND script = 'hira')),
+  ('しま', '島', '섬', (SELECT id FROM tbl_content_kana WHERE character = 'し' AND script = 'hira')),
+  ('した', '下', '아래', (SELECT id FROM tbl_content_kana WHERE character = 'し' AND script = 'hira')),
 
   ('すし', '寿司', '초밥', (SELECT id FROM tbl_content_kana WHERE character = 'す' AND script = 'hira')),
   ('すな', '砂', '모래', (SELECT id FROM tbl_content_kana WHERE character = 'す' AND script = 'hira')),
   ('すいえい', '水泳', '수영', (SELECT id FROM tbl_content_kana WHERE character = 'す' AND script = 'hira')),
+  ('すき', '好き', '좋아함', (SELECT id FROM tbl_content_kana WHERE character = 'す' AND script = 'hira')),
+  ('すこし', '少し', '조금', (SELECT id FROM tbl_content_kana WHERE character = 'す' AND script = 'hira')),
 
   ('せかい', '世界', '세계', (SELECT id FROM tbl_content_kana WHERE character = 'せ' AND script = 'hira')),
   ('せんせい', '先生', '선생님', (SELECT id FROM tbl_content_kana WHERE character = 'せ' AND script = 'hira')),
   ('せなか', '背中', '등', (SELECT id FROM tbl_content_kana WHERE character = 'せ' AND script = 'hira')),
+  ('せき', '席', '자리', (SELECT id FROM tbl_content_kana WHERE character = 'せ' AND script = 'hira')),
+  ('せまい', '狭い', '좁다', (SELECT id FROM tbl_content_kana WHERE character = 'せ' AND script = 'hira')),
 
   ('そら', '空', '하늘', (SELECT id FROM tbl_content_kana WHERE character = 'そ' AND script = 'hira')),
   ('そと', '外', '밖', (SELECT id FROM tbl_content_kana WHERE character = 'そ' AND script = 'hira')),
   ('そつぎょう', '卒業', '졸업', (SELECT id FROM tbl_content_kana WHERE character = 'そ' AND script = 'hira')),
+  ('そふ', '祖父', '할아버지', (SELECT id FROM tbl_content_kana WHERE character = 'そ' AND script = 'hira')),
+  ('そうじ', '掃除', '청소', (SELECT id FROM tbl_content_kana WHERE character = 'そ' AND script = 'hira')),
 
   ('たべもの', '食べ物', '음식', (SELECT id FROM tbl_content_kana WHERE character = 'た' AND script = 'hira')),
   ('たいよう', '太陽', '태양', (SELECT id FROM tbl_content_kana WHERE character = 'た' AND script = 'hira')),
   ('たまご', '卵', '계란', (SELECT id FROM tbl_content_kana WHERE character = 'た' AND script = 'hira')),
+  ('たてもの', '建物', '건물', (SELECT id FROM tbl_content_kana WHERE character = 'た' AND script = 'hira')),
+  ('たかい', '高い', '높다/비싸다', (SELECT id FROM tbl_content_kana WHERE character = 'た' AND script = 'hira')),
 
   ('ちいさい', '小さい', '작다', (SELECT id FROM tbl_content_kana WHERE character = 'ち' AND script = 'hira')),
   ('ちず', '地図', '지도', (SELECT id FROM tbl_content_kana WHERE character = 'ち' AND script = 'hira')),
   ('ちから', '力', '힘', (SELECT id FROM tbl_content_kana WHERE character = 'ち' AND script = 'hira')),
+  ('ちち', '父', '아버지', (SELECT id FROM tbl_content_kana WHERE character = 'ち' AND script = 'hira')),
+  ('ちかい', '近い', '가깝다', (SELECT id FROM tbl_content_kana WHERE character = 'ち' AND script = 'hira')),
 
   ('つき', '月', '달', (SELECT id FROM tbl_content_kana WHERE character = 'つ' AND script = 'hira')),
   ('つくえ', '机', '책상', (SELECT id FROM tbl_content_kana WHERE character = 'つ' AND script = 'hira')),
   ('つよい', '強い', '강하다', (SELECT id FROM tbl_content_kana WHERE character = 'つ' AND script = 'hira')),
+  ('つくる', '作る', '만들다', (SELECT id FROM tbl_content_kana WHERE character = 'つ' AND script = 'hira')),
+  ('つめ', '爪', '손톱', (SELECT id FROM tbl_content_kana WHERE character = 'つ' AND script = 'hira')),
 
   ('てがみ', '手紙', '편지', (SELECT id FROM tbl_content_kana WHERE character = 'て' AND script = 'hira')),
   ('てんき', '天気', '날씨', (SELECT id FROM tbl_content_kana WHERE character = 'て' AND script = 'hira')),
   ('てつだう', '手伝う', '돕다', (SELECT id FROM tbl_content_kana WHERE character = 'て' AND script = 'hira')),
+  ('て', '手', '손', (SELECT id FROM tbl_content_kana WHERE character = 'て' AND script = 'hira')),
+  ('てら', '寺', '절', (SELECT id FROM tbl_content_kana WHERE character = 'て' AND script = 'hira')),
 
   ('とけい', '時計', '시계', (SELECT id FROM tbl_content_kana WHERE character = 'と' AND script = 'hira')),
   ('とり', '鳥', '새', (SELECT id FROM tbl_content_kana WHERE character = 'と' AND script = 'hira')),
   ('ともだち', '友達', '친구', (SELECT id FROM tbl_content_kana WHERE character = 'と' AND script = 'hira')),
+  ('とおい', '遠い', '멀다', (SELECT id FROM tbl_content_kana WHERE character = 'と' AND script = 'hira')),
+  ('とし', '年', '나이/해', (SELECT id FROM tbl_content_kana WHERE character = 'と' AND script = 'hira')),
 
   ('なつ', '夏', '여름', (SELECT id FROM tbl_content_kana WHERE character = 'な' AND script = 'hira')),
   ('なまえ', '名前', '이름', (SELECT id FROM tbl_content_kana WHERE character = 'な' AND script = 'hira')),
   ('ながい', '長い', '길다', (SELECT id FROM tbl_content_kana WHERE character = 'な' AND script = 'hira')),
+  ('なか', '中', '안', (SELECT id FROM tbl_content_kana WHERE character = 'な' AND script = 'hira')),
+  ('なに', '何', '무엇', (SELECT id FROM tbl_content_kana WHERE character = 'な' AND script = 'hira')),
 
   ('にほん', '日本', '일본', (SELECT id FROM tbl_content_kana WHERE character = 'に' AND script = 'hira')),
   ('にく', '肉', '고기', (SELECT id FROM tbl_content_kana WHERE character = 'に' AND script = 'hira')),
   ('にわ', '庭', '정원', (SELECT id FROM tbl_content_kana WHERE character = 'に' AND script = 'hira')),
+  ('にもつ', '荷物', '짐', (SELECT id FROM tbl_content_kana WHERE character = 'に' AND script = 'hira')),
+  ('にし', '西', '서쪽', (SELECT id FROM tbl_content_kana WHERE character = 'に' AND script = 'hira')),
 
   ('いぬ', '犬', '개', (SELECT id FROM tbl_content_kana WHERE character = 'ぬ' AND script = 'hira')),
   ('ぬの', '布', '천', (SELECT id FROM tbl_content_kana WHERE character = 'ぬ' AND script = 'hira')),
-  ('ぬるい', '温い', '미지근하다', (SELECT id FROM tbl_content_kana WHERE character = 'ぬ' AND script = 'hira')),
+  ('ぬるい', '', '미지근하다', (SELECT id FROM tbl_content_kana WHERE character = 'ぬ' AND script = 'hira')),
+  ('ぬま', '沼', '늪', (SELECT id FROM tbl_content_kana WHERE character = 'ぬ' AND script = 'hira')),
 
   ('ねこ', '猫', '고양이', (SELECT id FROM tbl_content_kana WHERE character = 'ね' AND script = 'hira')),
   ('ねつ', '熱', '열', (SELECT id FROM tbl_content_kana WHERE character = 'ね' AND script = 'hira')),
   ('ねだん', '値段', '가격', (SELECT id FROM tbl_content_kana WHERE character = 'ね' AND script = 'hira')),
+  ('ねる', '寝る', '자다', (SELECT id FROM tbl_content_kana WHERE character = 'ね' AND script = 'hira')),
+  ('ねむい', '眠い', '졸리다', (SELECT id FROM tbl_content_kana WHERE character = 'ね' AND script = 'hira')),
 
   ('のみもの', '飲み物', '음료', (SELECT id FROM tbl_content_kana WHERE character = 'の' AND script = 'hira')),
   ('のはら', '野原', '들판', (SELECT id FROM tbl_content_kana WHERE character = 'の' AND script = 'hira')),
   ('のる', '乗る', '타다', (SELECT id FROM tbl_content_kana WHERE character = 'の' AND script = 'hira')),
+  ('のど', '喉', '목(구멍)', (SELECT id FROM tbl_content_kana WHERE character = 'の' AND script = 'hira')),
+  ('のむ', '飲む', '마시다', (SELECT id FROM tbl_content_kana WHERE character = 'の' AND script = 'hira')),
 
   ('はな', '花', '꽃', (SELECT id FROM tbl_content_kana WHERE character = 'は' AND script = 'hira')),
   ('はし', '橋', '다리', (SELECT id FROM tbl_content_kana WHERE character = 'は' AND script = 'hira')),
   ('はる', '春', '봄', (SELECT id FROM tbl_content_kana WHERE character = 'は' AND script = 'hira')),
+  ('はこ', '箱', '상자', (SELECT id FROM tbl_content_kana WHERE character = 'は' AND script = 'hira')),
+  ('は', '歯', '이(치아)', (SELECT id FROM tbl_content_kana WHERE character = 'は' AND script = 'hira')),
 
   ('ひと', '人', '사람', (SELECT id FROM tbl_content_kana WHERE character = 'ひ' AND script = 'hira')),
   ('ひかり', '光', '빛', (SELECT id FROM tbl_content_kana WHERE character = 'ひ' AND script = 'hira')),
   ('ひこうき', '飛行機', '비행기', (SELECT id FROM tbl_content_kana WHERE character = 'ひ' AND script = 'hira')),
+  ('ひる', '昼', '낮', (SELECT id FROM tbl_content_kana WHERE character = 'ひ' AND script = 'hira')),
+  ('ひだり', '左', '왼쪽', (SELECT id FROM tbl_content_kana WHERE character = 'ひ' AND script = 'hira')),
 
   ('ふゆ', '冬', '겨울', (SELECT id FROM tbl_content_kana WHERE character = 'ふ' AND script = 'hira')),
   ('ふね', '船', '배', (SELECT id FROM tbl_content_kana WHERE character = 'ふ' AND script = 'hira')),
   ('ふうふ', '夫婦', '부부', (SELECT id FROM tbl_content_kana WHERE character = 'ふ' AND script = 'hira')),
+  ('ふく', '服', '옷', (SELECT id FROM tbl_content_kana WHERE character = 'ふ' AND script = 'hira')),
+  ('ふたつ', '二つ', '두 개', (SELECT id FROM tbl_content_kana WHERE character = 'ふ' AND script = 'hira')),
 
   ('へや', '部屋', '방', (SELECT id FROM tbl_content_kana WHERE character = 'へ' AND script = 'hira')),
   ('へいわ', '平和', '평화', (SELECT id FROM tbl_content_kana WHERE character = 'へ' AND script = 'hira')),
   ('へた', '下手', '서투름', (SELECT id FROM tbl_content_kana WHERE character = 'へ' AND script = 'hira')),
+  ('へび', '蛇', '뱀', (SELECT id FROM tbl_content_kana WHERE character = 'へ' AND script = 'hira')),
+  ('へん', '変', '이상함', (SELECT id FROM tbl_content_kana WHERE character = 'へ' AND script = 'hira')),
 
   ('ほん', '本', '책', (SELECT id FROM tbl_content_kana WHERE character = 'ほ' AND script = 'hira')),
   ('ほし', '星', '별', (SELECT id FROM tbl_content_kana WHERE character = 'ほ' AND script = 'hira')),
   ('ほうこう', '方向', '방향', (SELECT id FROM tbl_content_kana WHERE character = 'ほ' AND script = 'hira')),
+  ('ほね', '骨', '뼈', (SELECT id FROM tbl_content_kana WHERE character = 'ほ' AND script = 'hira')),
+  ('ほそい', '細い', '가늘다', (SELECT id FROM tbl_content_kana WHERE character = 'ほ' AND script = 'hira')),
 
   ('まど', '窓', '창문', (SELECT id FROM tbl_content_kana WHERE character = 'ま' AND script = 'hira')),
   ('まち', '町', '마을', (SELECT id FROM tbl_content_kana WHERE character = 'ま' AND script = 'hira')),
   ('まいにち', '毎日', '매일', (SELECT id FROM tbl_content_kana WHERE character = 'ま' AND script = 'hira')),
+  ('まえ', '前', '앞', (SELECT id FROM tbl_content_kana WHERE character = 'ま' AND script = 'hira')),
+  ('まめ', '豆', '콩', (SELECT id FROM tbl_content_kana WHERE character = 'ま' AND script = 'hira')),
 
   ('みず', '水', '물', (SELECT id FROM tbl_content_kana WHERE character = 'み' AND script = 'hira')),
   ('みち', '道', '길', (SELECT id FROM tbl_content_kana WHERE character = 'み' AND script = 'hira')),
   ('みどり', '緑', '초록', (SELECT id FROM tbl_content_kana WHERE character = 'み' AND script = 'hira')),
+  ('みみ', '耳', '귀', (SELECT id FROM tbl_content_kana WHERE character = 'み' AND script = 'hira')),
+  ('みせ', '店', '가게', (SELECT id FROM tbl_content_kana WHERE character = 'み' AND script = 'hira')),
 
   ('むし', '虫', '벌레', (SELECT id FROM tbl_content_kana WHERE character = 'む' AND script = 'hira')),
   ('むかし', '昔', '옛날', (SELECT id FROM tbl_content_kana WHERE character = 'む' AND script = 'hira')),
   ('むすめ', '娘', '딸', (SELECT id FROM tbl_content_kana WHERE character = 'む' AND script = 'hira')),
+  ('むら', '村', '마을', (SELECT id FROM tbl_content_kana WHERE character = 'む' AND script = 'hira')),
+  ('むね', '胸', '가슴', (SELECT id FROM tbl_content_kana WHERE character = 'む' AND script = 'hira')),
 
   ('めがね', '眼鏡', '안경', (SELECT id FROM tbl_content_kana WHERE character = 'め' AND script = 'hira')),
+  ('め', '目', '눈', (SELECT id FROM tbl_content_kana WHERE character = 'め' AND script = 'hira')),
   ('あめ', '雨', '비', (SELECT id FROM tbl_content_kana WHERE character = 'め' AND script = 'hira')),
   ('つめたい', '冷たい', '차갑다', (SELECT id FROM tbl_content_kana WHERE character = 'め' AND script = 'hira')),
+  ('ゆめ', '夢', '꿈', (SELECT id FROM tbl_content_kana WHERE character = 'め' AND script = 'hira')),
 
   ('もも', '桃', '복숭아', (SELECT id FROM tbl_content_kana WHERE character = 'も' AND script = 'hira')),
   ('もり', '森', '숲', (SELECT id FROM tbl_content_kana WHERE character = 'も' AND script = 'hira')),
   ('くも', '雲', '구름', (SELECT id FROM tbl_content_kana WHERE character = 'も' AND script = 'hira')),
+  ('もの', '物', '물건', (SELECT id FROM tbl_content_kana WHERE character = 'も' AND script = 'hira')),
+  ('もん', '門', '문', (SELECT id FROM tbl_content_kana WHERE character = 'も' AND script = 'hira')),
 
   ('やま', '山', '산', (SELECT id FROM tbl_content_kana WHERE character = 'や' AND script = 'hira')),
   ('やさい', '野菜', '채소', (SELECT id FROM tbl_content_kana WHERE character = 'や' AND script = 'hira')),
   ('やすい', '安い', '싸다', (SELECT id FROM tbl_content_kana WHERE character = 'や' AND script = 'hira')),
+  ('やさしい', '優しい', '상냥하다', (SELECT id FROM tbl_content_kana WHERE character = 'や' AND script = 'hira')),
+  ('やすむ', '休む', '쉬다', (SELECT id FROM tbl_content_kana WHERE character = 'や' AND script = 'hira')),
 
   ('ゆき', '雪', '눈', (SELECT id FROM tbl_content_kana WHERE character = 'ゆ' AND script = 'hira')),
   ('ゆめ', '夢', '꿈', (SELECT id FROM tbl_content_kana WHERE character = 'ゆ' AND script = 'hira')),
   ('ゆうがた', '夕方', '저녁', (SELECT id FROM tbl_content_kana WHERE character = 'ゆ' AND script = 'hira')),
+  ('ゆび', '指', '손가락', (SELECT id FROM tbl_content_kana WHERE character = 'ゆ' AND script = 'hira')),
+  ('ゆか', '床', '바닥', (SELECT id FROM tbl_content_kana WHERE character = 'ゆ' AND script = 'hira')),
 
   ('よる', '夜', '밤', (SELECT id FROM tbl_content_kana WHERE character = 'よ' AND script = 'hira')),
   ('よてい', '予定', '예정', (SELECT id FROM tbl_content_kana WHERE character = 'よ' AND script = 'hira')),
   ('よわい', '弱い', '약하다', (SELECT id FROM tbl_content_kana WHERE character = 'よ' AND script = 'hira')),
+  ('よむ', '読む', '읽다', (SELECT id FROM tbl_content_kana WHERE character = 'よ' AND script = 'hira')),
+  ('よこ', '横', '옆', (SELECT id FROM tbl_content_kana WHERE character = 'よ' AND script = 'hira')),
 
   ('さくら', '桜', '벚꽃', (SELECT id FROM tbl_content_kana WHERE character = 'ら' AND script = 'hira')),
   ('らいねん', '来年', '내년', (SELECT id FROM tbl_content_kana WHERE character = 'ら' AND script = 'hira')),
   ('そら', '空', '하늘', (SELECT id FROM tbl_content_kana WHERE character = 'ら' AND script = 'hira')),
+  ('らく', '楽', '편함', (SELECT id FROM tbl_content_kana WHERE character = 'ら' AND script = 'hira')),
+  ('さら', '皿', '접시', (SELECT id FROM tbl_content_kana WHERE character = 'ら' AND script = 'hira')),
 
-  ('りんご', '林檎', '사과', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
+  ('りんご', '', '사과', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
   ('りゆう', '理由', '이유', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
   ('とり', '鳥', '새', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
+  ('くすり', '薬', '약', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
+  ('りかい', '理解', '이해', (SELECT id FROM tbl_content_kana WHERE character = 'り' AND script = 'hira')),
 
   ('つくる', '作る', '만들다', (SELECT id FROM tbl_content_kana WHERE character = 'る' AND script = 'hira')),
   ('くるま', '車', '자동차', (SELECT id FROM tbl_content_kana WHERE character = 'る' AND script = 'hira')),
   ('はる', '春', '봄', (SELECT id FROM tbl_content_kana WHERE character = 'る' AND script = 'hira')),
+  ('よる', '夜', '밤', (SELECT id FROM tbl_content_kana WHERE character = 'る' AND script = 'hira')),
+  ('みる', '見る', '보다', (SELECT id FROM tbl_content_kana WHERE character = 'る' AND script = 'hira')),
 
   ('これ', '', '이것', (SELECT id FROM tbl_content_kana WHERE character = 'れ' AND script = 'hira')),
   ('だれ', '誰', '누구', (SELECT id FROM tbl_content_kana WHERE character = 'れ' AND script = 'hira')),
   ('れきし', '歴史', '역사', (SELECT id FROM tbl_content_kana WHERE character = 'れ' AND script = 'hira')),
+  ('れい', '例', '예', (SELECT id FROM tbl_content_kana WHERE character = 'れ' AND script = 'hira')),
+  ('れんしゅう', '練習', '연습', (SELECT id FROM tbl_content_kana WHERE character = 'れ' AND script = 'hira')),
 
   ('いろ', '色', '색', (SELECT id FROM tbl_content_kana WHERE character = 'ろ' AND script = 'hira')),
   ('ところ', '所', '장소', (SELECT id FROM tbl_content_kana WHERE character = 'ろ' AND script = 'hira')),
   ('しろい', '白い', '하얗다', (SELECT id FROM tbl_content_kana WHERE character = 'ろ' AND script = 'hira')),
+  ('ろく', '六', '여섯', (SELECT id FROM tbl_content_kana WHERE character = 'ろ' AND script = 'hira')),
+  ('ふろ', '風呂', '목욕', (SELECT id FROM tbl_content_kana WHERE character = 'ろ' AND script = 'hira')),
 
   ('わたし', '私', '나', (SELECT id FROM tbl_content_kana WHERE character = 'わ' AND script = 'hira')),
   ('かわ', '川', '강', (SELECT id FROM tbl_content_kana WHERE character = 'わ' AND script = 'hira')),
   ('わかい', '若い', '젊다', (SELECT id FROM tbl_content_kana WHERE character = 'わ' AND script = 'hira')),
+  ('わすれる', '忘れる', '잊다', (SELECT id FROM tbl_content_kana WHERE character = 'わ' AND script = 'hira')),
+  ('わらう', '笑う', '웃다', (SELECT id FROM tbl_content_kana WHERE character = 'わ' AND script = 'hira')),
 
-  ('を', '', '~을/를 (조사)', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
+  ('あいを', '愛を', '사랑을 (~을/를: 조사)', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
+  ('みずを', '水を', '물을', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
+  ('ほんを', '本を', '책을', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
+  ('てを', '手を', '손을', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
+  ('なまえを', '名前を', '이름을', (SELECT id FROM tbl_content_kana WHERE character = 'を' AND script = 'hira')),
 
   ('ほん', '本', '책', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira')),
   ('せんせい', '先生', '선생님', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira')),
-  ('にほん', '日本', '일본', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira'))
+  ('にほん', '日本', '일본', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira')),
+  ('みかん', '', '귤', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira')),
+  ('でんわ', '電話', '전화', (SELECT id FROM tbl_content_kana WHERE character = 'ん' AND script = 'hira'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
 
@@ -496,100 +589,144 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('がっこう', '学校', '학교', (SELECT id FROM tbl_content_kana WHERE character = 'が' AND script = 'hira')),
   ('かがみ', '鏡', '거울', (SELECT id FROM tbl_content_kana WHERE character = 'が' AND script = 'hira')),
   ('えいが', '映画', '영화', (SELECT id FROM tbl_content_kana WHERE character = 'が' AND script = 'hira')),
+  ('がいこく', '外国', '외국', (SELECT id FROM tbl_content_kana WHERE character = 'が' AND script = 'hira')),
+  ('まんが', '漫画', '만화', (SELECT id FROM tbl_content_kana WHERE character = 'が' AND script = 'hira')),
 
   ('ぎんこう', '銀行', '은행', (SELECT id FROM tbl_content_kana WHERE character = 'ぎ' AND script = 'hira')),
   ('かぎ', '鍵', '열쇠', (SELECT id FROM tbl_content_kana WHERE character = 'ぎ' AND script = 'hira')),
   ('たまねぎ', '玉ねぎ', '양파', (SELECT id FROM tbl_content_kana WHERE character = 'ぎ' AND script = 'hira')),
+  ('みぎ', '右', '오른쪽', (SELECT id FROM tbl_content_kana WHERE character = 'ぎ' AND script = 'hira')),
+  ('うさぎ', '', '토끼', (SELECT id FROM tbl_content_kana WHERE character = 'ぎ' AND script = 'hira')),
 
   ('かぐ', '家具', '가구', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
-  ('すぐ', '直ぐ', '바로', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
+  ('すぐ', '', '바로', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
   ('ぐあい', '具合', '상태', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
+  ('どうぐ', '道具', '도구', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
+  ('ぐうぜん', '偶然', '우연', (SELECT id FROM tbl_content_kana WHERE character = 'ぐ' AND script = 'hira')),
 
   ('げんき', '元気', '기운', (SELECT id FROM tbl_content_kana WHERE character = 'げ' AND script = 'hira')),
   ('ひげ', '髭', '수염', (SELECT id FROM tbl_content_kana WHERE character = 'げ' AND script = 'hira')),
   ('かげ', '影', '그림자', (SELECT id FROM tbl_content_kana WHERE character = 'げ' AND script = 'hira')),
+  ('げんかん', '玄関', '현관', (SELECT id FROM tbl_content_kana WHERE character = 'げ' AND script = 'hira')),
+  ('げんいん', '原因', '원인', (SELECT id FROM tbl_content_kana WHERE character = 'げ' AND script = 'hira')),
 
   ('ごはん', 'ご飯', '밥', (SELECT id FROM tbl_content_kana WHERE character = 'ご' AND script = 'hira')),
   ('えいご', '英語', '영어', (SELECT id FROM tbl_content_kana WHERE character = 'ご' AND script = 'hira')),
   ('ごご', '午後', '오후', (SELECT id FROM tbl_content_kana WHERE character = 'ご' AND script = 'hira')),
+  ('ごみ', '', '쓰레기', (SELECT id FROM tbl_content_kana WHERE character = 'ご' AND script = 'hira')),
+  ('いちご', '', '딸기', (SELECT id FROM tbl_content_kana WHERE character = 'ご' AND script = 'hira')),
 
   ('ざっし', '雑誌', '잡지', (SELECT id FROM tbl_content_kana WHERE character = 'ざ' AND script = 'hira')),
   ('ひざ', '膝', '무릎', (SELECT id FROM tbl_content_kana WHERE character = 'ざ' AND script = 'hira')),
   ('かざん', '火山', '화산', (SELECT id FROM tbl_content_kana WHERE character = 'ざ' AND script = 'hira')),
+  ('ざせき', '座席', '좌석', (SELECT id FROM tbl_content_kana WHERE character = 'ざ' AND script = 'hira')),
+  ('ざっそう', '雑草', '잡초', (SELECT id FROM tbl_content_kana WHERE character = 'ざ' AND script = 'hira')),
 
   ('じかん', '時間', '시간', (SELECT id FROM tbl_content_kana WHERE character = 'じ' AND script = 'hira')),
   ('じてんしゃ', '自転車', '자전거', (SELECT id FROM tbl_content_kana WHERE character = 'じ' AND script = 'hira')),
   ('かじ', '家事', '집안일', (SELECT id FROM tbl_content_kana WHERE character = 'じ' AND script = 'hira')),
+  ('じしん', '地震', '지진', (SELECT id FROM tbl_content_kana WHERE character = 'じ' AND script = 'hira')),
+  ('じしょ', '辞書', '사전', (SELECT id FROM tbl_content_kana WHERE character = 'じ' AND script = 'hira')),
 
   ('ずつう', '頭痛', '두통', (SELECT id FROM tbl_content_kana WHERE character = 'ず' AND script = 'hira')),
   ('かず', '数', '개수', (SELECT id FROM tbl_content_kana WHERE character = 'ず' AND script = 'hira')),
   ('みず', '水', '물', (SELECT id FROM tbl_content_kana WHERE character = 'ず' AND script = 'hira')),
+  ('ちず', '地図', '지도', (SELECT id FROM tbl_content_kana WHERE character = 'ず' AND script = 'hira')),
+  ('しずか', '静か', '조용함', (SELECT id FROM tbl_content_kana WHERE character = 'ず' AND script = 'hira')),
 
   ('ぜんぶ', '全部', '전부', (SELECT id FROM tbl_content_kana WHERE character = 'ぜ' AND script = 'hira')),
   ('かぜ', '風', '바람', (SELECT id FROM tbl_content_kana WHERE character = 'ぜ' AND script = 'hira')),
   ('ぜいきん', '税金', '세금', (SELECT id FROM tbl_content_kana WHERE character = 'ぜ' AND script = 'hira')),
+  ('ぜひ', '', '꼭', (SELECT id FROM tbl_content_kana WHERE character = 'ぜ' AND script = 'hira')),
+  ('ぜんぜん', '全然', '전혀', (SELECT id FROM tbl_content_kana WHERE character = 'ぜ' AND script = 'hira')),
 
   ('ぞう', '象', '코끼리', (SELECT id FROM tbl_content_kana WHERE character = 'ぞ' AND script = 'hira')),
   ('かぞく', '家族', '가족', (SELECT id FROM tbl_content_kana WHERE character = 'ぞ' AND script = 'hira')),
   ('なぞ', '謎', '수수께끼', (SELECT id FROM tbl_content_kana WHERE character = 'ぞ' AND script = 'hira')),
+  ('みぞ', '溝', '도랑', (SELECT id FROM tbl_content_kana WHERE character = 'ぞ' AND script = 'hira')),
 
   ('だいがく', '大学', '대학교', (SELECT id FROM tbl_content_kana WHERE character = 'だ' AND script = 'hira')),
   ('からだ', '体', '몸', (SELECT id FROM tbl_content_kana WHERE character = 'だ' AND script = 'hira')),
   ('だれ', '誰', '누구', (SELECT id FROM tbl_content_kana WHERE character = 'だ' AND script = 'hira')),
+  ('だいどころ', '台所', '부엌', (SELECT id FROM tbl_content_kana WHERE character = 'だ' AND script = 'hira')),
+  ('ともだち', '友達', '친구', (SELECT id FROM tbl_content_kana WHERE character = 'だ' AND script = 'hira')),
 
   ('はなぢ', '鼻血', '코피', (SELECT id FROM tbl_content_kana WHERE character = 'ぢ' AND script = 'hira')),
   ('ちぢむ', '縮む', '줄어들다', (SELECT id FROM tbl_content_kana WHERE character = 'ぢ' AND script = 'hira')),
 
   ('つづく', '続く', '계속되다', (SELECT id FROM tbl_content_kana WHERE character = 'づ' AND script = 'hira')),
   ('きづく', '気づく', '알아차리다', (SELECT id FROM tbl_content_kana WHERE character = 'づ' AND script = 'hira')),
+  ('みかづき', '三日月', '초승달', (SELECT id FROM tbl_content_kana WHERE character = 'づ' AND script = 'hira')),
+  ('こづつみ', '小包', '소포', (SELECT id FROM tbl_content_kana WHERE character = 'づ' AND script = 'hira')),
 
   ('でんわ', '電話', '전화', (SELECT id FROM tbl_content_kana WHERE character = 'で' AND script = 'hira')),
   ('でんしゃ', '電車', '전철', (SELECT id FROM tbl_content_kana WHERE character = 'で' AND script = 'hira')),
   ('でぐち', '出口', '출구', (SELECT id FROM tbl_content_kana WHERE character = 'で' AND script = 'hira')),
+  ('でんき', '電気', '전기', (SELECT id FROM tbl_content_kana WHERE character = 'で' AND script = 'hira')),
+  ('おでん', '', '오뎅', (SELECT id FROM tbl_content_kana WHERE character = 'で' AND script = 'hira')),
 
   ('どようび', '土曜日', '토요일', (SELECT id FROM tbl_content_kana WHERE character = 'ど' AND script = 'hira')),
   ('どうぶつ', '動物', '동물', (SELECT id FROM tbl_content_kana WHERE character = 'ど' AND script = 'hira')),
   ('まど', '窓', '창문', (SELECT id FROM tbl_content_kana WHERE character = 'ど' AND script = 'hira')),
+  ('どく', '毒', '독', (SELECT id FROM tbl_content_kana WHERE character = 'ど' AND script = 'hira')),
+  ('こども', '子供', '아이', (SELECT id FROM tbl_content_kana WHERE character = 'ど' AND script = 'hira')),
 
   ('ばしょ', '場所', '장소', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
   ('かばん', '鞄', '가방', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
-  ('たばこ', '煙草', '담배', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
+  ('たばこ', '', '담배', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
+  ('ことば', '言葉', '말', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
+  ('そば', '', '옆', (SELECT id FROM tbl_content_kana WHERE character = 'ば' AND script = 'hira')),
 
   ('びょういん', '病院', '병원', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
-  ('えび', '海老', '새우', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
+  ('えび', '', '새우', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
   ('ゆび', '指', '손가락', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
+  ('くび', '首', '목', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
+  ('あそび', '遊び', '놀이', (SELECT id FROM tbl_content_kana WHERE character = 'び' AND script = 'hira')),
 
   ('ぶた', '豚', '돼지', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
-  ('ぶどう', '葡萄', '포도', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
+  ('ぶどう', '', '포도', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
   ('かぶ', '株', '주식', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
+  ('ぶんか', '文化', '문화', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
+  ('あぶない', '危ない', '위험하다', (SELECT id FROM tbl_content_kana WHERE character = 'ぶ' AND script = 'hira')),
 
   ('べんきょう', '勉強', '공부', (SELECT id FROM tbl_content_kana WHERE character = 'べ' AND script = 'hira')),
   ('たべる', '食べる', '먹다', (SELECT id FROM tbl_content_kana WHERE character = 'べ' AND script = 'hira')),
   ('なべ', '鍋', '냄비', (SELECT id FROM tbl_content_kana WHERE character = 'べ' AND script = 'hira')),
+  ('べつ', '別', '다름', (SELECT id FROM tbl_content_kana WHERE character = 'べ' AND script = 'hira')),
+  ('かべ', '壁', '벽', (SELECT id FROM tbl_content_kana WHERE character = 'べ' AND script = 'hira')),
 
   ('ぼうし', '帽子', '모자', (SELECT id FROM tbl_content_kana WHERE character = 'ぼ' AND script = 'hira')),
   ('ぼく', '僕', '나', (SELECT id FROM tbl_content_kana WHERE character = 'ぼ' AND script = 'hira')),
   ('そぼ', '祖母', '할머니', (SELECT id FROM tbl_content_kana WHERE character = 'ぼ' AND script = 'hira')),
+  ('どろぼう', '泥棒', '도둑', (SELECT id FROM tbl_content_kana WHERE character = 'ぼ' AND script = 'hira')),
+  ('のぼる', '登る', '오르다', (SELECT id FROM tbl_content_kana WHERE character = 'ぼ' AND script = 'hira')),
 
   ('かんぱい', '乾杯', '건배', (SELECT id FROM tbl_content_kana WHERE character = 'ぱ' AND script = 'hira')),
   ('せんぱい', '先輩', '선배', (SELECT id FROM tbl_content_kana WHERE character = 'ぱ' AND script = 'hira')),
   ('いっぱい', '一杯', '가득', (SELECT id FROM tbl_content_kana WHERE character = 'ぱ' AND script = 'hira')),
+  ('はっぱ', '葉っぱ', '잎', (SELECT id FROM tbl_content_kana WHERE character = 'ぱ' AND script = 'hira')),
+  ('ぱちぱち', '', '짝짝', (SELECT id FROM tbl_content_kana WHERE character = 'ぱ' AND script = 'hira')),
 
   ('えんぴつ', '鉛筆', '연필', (SELECT id FROM tbl_content_kana WHERE character = 'ぴ' AND script = 'hira')),
   ('はっぴょう', '発表', '발표', (SELECT id FROM tbl_content_kana WHERE character = 'ぴ' AND script = 'hira')),
   ('ぴかぴか', '', '반짝반짝', (SELECT id FROM tbl_content_kana WHERE character = 'ぴ' AND script = 'hira')),
+  ('ぴったり', '', '딱 맞음', (SELECT id FROM tbl_content_kana WHERE character = 'ぴ' AND script = 'hira')),
+  ('ぴりぴり', '', '따끔따끔', (SELECT id FROM tbl_content_kana WHERE character = 'ぴ' AND script = 'hira')),
 
   ('てんぷら', '天ぷら', '튀김', (SELECT id FROM tbl_content_kana WHERE character = 'ぷ' AND script = 'hira')),
   ('きっぷ', '切符', '표', (SELECT id FROM tbl_content_kana WHERE character = 'ぷ' AND script = 'hira')),
   ('ぷりぷり', '', '탱글탱글', (SELECT id FROM tbl_content_kana WHERE character = 'ぷ' AND script = 'hira')),
+  ('ぷんぷん', '', '씩씩거림', (SELECT id FROM tbl_content_kana WHERE character = 'ぷ' AND script = 'hira')),
 
   ('かんぺき', '完璧', '완벽', (SELECT id FROM tbl_content_kana WHERE character = 'ぺ' AND script = 'hira')),
   ('ぺらぺら', '', '술술(유창하게)', (SELECT id FROM tbl_content_kana WHERE character = 'ぺ' AND script = 'hira')),
   ('たんぺん', '短編', '단편', (SELECT id FROM tbl_content_kana WHERE character = 'ぺ' AND script = 'hira')),
+  ('ぺこぺこ', '', '배고픔', (SELECT id FROM tbl_content_kana WHERE character = 'ぺ' AND script = 'hira')),
 
   ('さんぽ', '散歩', '산책', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira')),
-  ('たんぽぽ', '蒲公英', '민들레', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira')),
-  ('ぽかぽか', '', '따뜻하고 포근한', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira'))
+  ('たんぽぽ', '', '민들레', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira')),
+  ('ぽかぽか', '', '따뜻하고 포근한', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira')),
+  ('しっぽ', '', '꼬리', (SELECT id FROM tbl_content_kana WHERE character = 'ぽ' AND script = 'hira'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
 
@@ -599,56 +736,81 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('きゃく', '客', '손님', (SELECT id FROM tbl_content_kana WHERE character = 'きゃ' AND script = 'hira')),
   ('きゃくしつ', '客室', '객실', (SELECT id FROM tbl_content_kana WHERE character = 'きゃ' AND script = 'hira')),
   ('きゃくせき', '客席', '객석', (SELECT id FROM tbl_content_kana WHERE character = 'きゃ' AND script = 'hira')),
+  ('おきゃくさん', 'お客さん', '손님', (SELECT id FROM tbl_content_kana WHERE character = 'きゃ' AND script = 'hira')),
 
-  ('きゅうり', '胡瓜', '오이', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
+  ('きゅうり', '', '오이', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
   ('きゅうけい', '休憩', '휴식', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
   ('やきゅう', '野球', '야구', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
+  ('きゅうこう', '急行', '급행', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
+  ('きゅうに', '急に', '갑자기', (SELECT id FROM tbl_content_kana WHERE character = 'きゅ' AND script = 'hira')),
 
   ('きょう', '今日', '오늘', (SELECT id FROM tbl_content_kana WHERE character = 'きょ' AND script = 'hira')),
   ('きょうしつ', '教室', '교실', (SELECT id FROM tbl_content_kana WHERE character = 'きょ' AND script = 'hira')),
   ('とうきょう', '東京', '도쿄', (SELECT id FROM tbl_content_kana WHERE character = 'きょ' AND script = 'hira')),
+  ('きょり', '距離', '거리', (SELECT id FROM tbl_content_kana WHERE character = 'きょ' AND script = 'hira')),
+  ('きょうみ', '興味', '흥미', (SELECT id FROM tbl_content_kana WHERE character = 'きょ' AND script = 'hira')),
 
   ('しゃしん', '写真', '사진', (SELECT id FROM tbl_content_kana WHERE character = 'しゃ' AND script = 'hira')),
   ('かいしゃ', '会社', '회사', (SELECT id FROM tbl_content_kana WHERE character = 'しゃ' AND script = 'hira')),
   ('でんしゃ', '電車', '전철', (SELECT id FROM tbl_content_kana WHERE character = 'しゃ' AND script = 'hira')),
+  ('しゃかい', '社会', '사회', (SELECT id FROM tbl_content_kana WHERE character = 'しゃ' AND script = 'hira')),
+  ('しゃちょう', '社長', '사장', (SELECT id FROM tbl_content_kana WHERE character = 'しゃ' AND script = 'hira')),
 
   ('しゅみ', '趣味', '취미', (SELECT id FROM tbl_content_kana WHERE character = 'しゅ' AND script = 'hira')),
   ('しゅくだい', '宿題', '숙제', (SELECT id FROM tbl_content_kana WHERE character = 'しゅ' AND script = 'hira')),
   ('かしゅ', '歌手', '가수', (SELECT id FROM tbl_content_kana WHERE character = 'しゅ' AND script = 'hira')),
+  ('しゅうまつ', '週末', '주말', (SELECT id FROM tbl_content_kana WHERE character = 'しゅ' AND script = 'hira')),
+  ('しゅっぱつ', '出発', '출발', (SELECT id FROM tbl_content_kana WHERE character = 'しゅ' AND script = 'hira')),
 
   ('しょくじ', '食事', '식사', (SELECT id FROM tbl_content_kana WHERE character = 'しょ' AND script = 'hira')),
   ('としょかん', '図書館', '도서관', (SELECT id FROM tbl_content_kana WHERE character = 'しょ' AND script = 'hira')),
   ('しょうがっこう', '小学校', '초등학교', (SELECT id FROM tbl_content_kana WHERE character = 'しょ' AND script = 'hira')),
+  ('しょるい', '書類', '서류', (SELECT id FROM tbl_content_kana WHERE character = 'しょ' AND script = 'hira')),
+  ('しょうかい', '紹介', '소개', (SELECT id FROM tbl_content_kana WHERE character = 'しょ' AND script = 'hira')),
 
   ('おちゃ', 'お茶', '차', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
   ('ちゃいろ', '茶色', '갈색', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
-  ('ちゃわん', '茶碗', '찻잔', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
+  ('ちゃわん', '茶碗', '밥그릇', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
+  ('おもちゃ', '', '장난감', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
+  ('ちゃんと', '', '제대로', (SELECT id FROM tbl_content_kana WHERE character = 'ちゃ' AND script = 'hira')),
 
   ('ちゅうい', '注意', '주의', (SELECT id FROM tbl_content_kana WHERE character = 'ちゅ' AND script = 'hira')),
   ('ちゅうがっこう', '中学校', '중학교', (SELECT id FROM tbl_content_kana WHERE character = 'ちゅ' AND script = 'hira')),
   ('ちゅうごく', '中国', '중국', (SELECT id FROM tbl_content_kana WHERE character = 'ちゅ' AND script = 'hira')),
+  ('ちゅうしゃ', '駐車', '주차', (SELECT id FROM tbl_content_kana WHERE character = 'ちゅ' AND script = 'hira')),
+  ('ちゅうもん', '注文', '주문', (SELECT id FROM tbl_content_kana WHERE character = 'ちゅ' AND script = 'hira')),
 
   ('ちょきん', '貯金', '저금', (SELECT id FROM tbl_content_kana WHERE character = 'ちょ' AND script = 'hira')),
   ('ちょうしょく', '朝食', '아침식사', (SELECT id FROM tbl_content_kana WHERE character = 'ちょ' AND script = 'hira')),
   ('ちょっと', '', '잠깐', (SELECT id FROM tbl_content_kana WHERE character = 'ちょ' AND script = 'hira')),
+  ('ちょうし', '調子', '상태(컨디션)', (SELECT id FROM tbl_content_kana WHERE character = 'ちょ' AND script = 'hira')),
+  ('ちょうど', '', '딱', (SELECT id FROM tbl_content_kana WHERE character = 'ちょ' AND script = 'hira')),
 
   ('にゃんこ', '', '고양이', (SELECT id FROM tbl_content_kana WHERE character = 'にゃ' AND script = 'hira')),
-  ('こんにゃく', '蒟蒻', '곤약', (SELECT id FROM tbl_content_kana WHERE character = 'にゃ' AND script = 'hira')),
+  ('こんにゃく', '', '곤약', (SELECT id FROM tbl_content_kana WHERE character = 'にゃ' AND script = 'hira')),
+  ('にゃあにゃあ', '', '야옹야옹', (SELECT id FROM tbl_content_kana WHERE character = 'にゃ' AND script = 'hira')),
 
   ('にゅうがく', '入学', '입학', (SELECT id FROM tbl_content_kana WHERE character = 'にゅ' AND script = 'hira')),
   ('ぎゅうにゅう', '牛乳', '우유', (SELECT id FROM tbl_content_kana WHERE character = 'にゅ' AND script = 'hira')),
   ('にゅういん', '入院', '입원', (SELECT id FROM tbl_content_kana WHERE character = 'にゅ' AND script = 'hira')),
+  ('にゅうりょく', '入力', '입력', (SELECT id FROM tbl_content_kana WHERE character = 'にゅ' AND script = 'hira')),
+  ('にゅうじょう', '入場', '입장', (SELECT id FROM tbl_content_kana WHERE character = 'にゅ' AND script = 'hira')),
 
   ('にょろにょろ', '', '꿈틀꿈틀', (SELECT id FROM tbl_content_kana WHERE character = 'にょ' AND script = 'hira')),
+  ('にょきにょき', '', '쑥쑥', (SELECT id FROM tbl_content_kana WHERE character = 'にょ' AND script = 'hira')),
 
   ('ひゃく', '百', '백', (SELECT id FROM tbl_content_kana WHERE character = 'ひゃ' AND script = 'hira')),
   ('ひゃくえん', '百円', '백엔', (SELECT id FROM tbl_content_kana WHERE character = 'ひゃ' AND script = 'hira')),
+  ('ひゃくてん', '百点', '백점', (SELECT id FROM tbl_content_kana WHERE character = 'ひゃ' AND script = 'hira')),
 
   ('ひゅー', '', '휭(바람 소리)', (SELECT id FROM tbl_content_kana WHERE character = 'ひゅ' AND script = 'hira')),
+  ('ひゅうひゅう', '', '휭휭(바람 소리)', (SELECT id FROM tbl_content_kana WHERE character = 'ひゅ' AND script = 'hira')),
 
   ('ひょう', '表', '표', (SELECT id FROM tbl_content_kana WHERE character = 'ひょ' AND script = 'hira')),
   ('ひょうげん', '表現', '표현', (SELECT id FROM tbl_content_kana WHERE character = 'ひょ' AND script = 'hira')),
   ('ひょうし', '表紙', '표지', (SELECT id FROM tbl_content_kana WHERE character = 'ひょ' AND script = 'hira')),
+  ('ひょうか', '評価', '평가', (SELECT id FROM tbl_content_kana WHERE character = 'ひょ' AND script = 'hira')),
+  ('ひょうじょう', '表情', '표정', (SELECT id FROM tbl_content_kana WHERE character = 'ひょ' AND script = 'hira')),
 
   ('みゃく', '脈', '맥박', (SELECT id FROM tbl_content_kana WHERE character = 'みゃ' AND script = 'hira')),
   ('さんみゃく', '山脈', '산맥', (SELECT id FROM tbl_content_kana WHERE character = 'みゃ' AND script = 'hira')),
@@ -662,13 +824,17 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('りゅう', '竜', '용', (SELECT id FROM tbl_content_kana WHERE character = 'りゅ' AND script = 'hira')),
   ('りゅうがく', '留学', '유학', (SELECT id FROM tbl_content_kana WHERE character = 'りゅ' AND script = 'hira')),
   ('こうりゅう', '交流', '교류', (SELECT id FROM tbl_content_kana WHERE character = 'りゅ' AND script = 'hira')),
+  ('りゅうこう', '流行', '유행', (SELECT id FROM tbl_content_kana WHERE character = 'りゅ' AND script = 'hira')),
 
   ('りょこう', '旅行', '여행', (SELECT id FROM tbl_content_kana WHERE character = 'りょ' AND script = 'hira')),
   ('りょうり', '料理', '요리', (SELECT id FROM tbl_content_kana WHERE character = 'りょ' AND script = 'hira')),
   ('りょうしん', '両親', '부모님', (SELECT id FROM tbl_content_kana WHERE character = 'りょ' AND script = 'hira')),
+  ('りょうきん', '料金', '요금', (SELECT id FROM tbl_content_kana WHERE character = 'りょ' AND script = 'hira')),
+  ('りょかん', '旅館', '여관', (SELECT id FROM tbl_content_kana WHERE character = 'りょ' AND script = 'hira')),
 
   ('ぎゃく', '逆', '반대', (SELECT id FROM tbl_content_kana WHERE character = 'ぎゃ' AND script = 'hira')),
   ('ぎゃくてん', '逆転', '역전', (SELECT id FROM tbl_content_kana WHERE character = 'ぎゃ' AND script = 'hira')),
+  ('ぎゃあぎゃあ', '', '와글와글', (SELECT id FROM tbl_content_kana WHERE character = 'ぎゃ' AND script = 'hira')),
 
   ('ぎゅうにゅう', '牛乳', '우유', (SELECT id FROM tbl_content_kana WHERE character = 'ぎゅ' AND script = 'hira')),
   ('ぎゅうにく', '牛肉', '소고기', (SELECT id FROM tbl_content_kana WHERE character = 'ぎゅ' AND script = 'hira')),
@@ -677,18 +843,24 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ぎょうざ', '餃子', '교자', (SELECT id FROM tbl_content_kana WHERE character = 'ぎょ' AND script = 'hira')),
   ('きんぎょ', '金魚', '금붕어', (SELECT id FROM tbl_content_kana WHERE character = 'ぎょ' AND script = 'hira')),
   ('ぎょせん', '漁船', '어선', (SELECT id FROM tbl_content_kana WHERE character = 'ぎょ' AND script = 'hira')),
+  ('ぎょうじ', '行事', '행사', (SELECT id FROM tbl_content_kana WHERE character = 'ぎょ' AND script = 'hira')),
 
   ('じゃがいも', 'じゃが芋', '감자', (SELECT id FROM tbl_content_kana WHERE character = 'じゃ' AND script = 'hira')),
   ('じゃま', '邪魔', '방해', (SELECT id FROM tbl_content_kana WHERE character = 'じゃ' AND script = 'hira')),
   ('じゃんけん', '', '가위바위보', (SELECT id FROM tbl_content_kana WHERE character = 'じゃ' AND script = 'hira')),
+  ('じゃぐち', '蛇口', '수도꼭지', (SELECT id FROM tbl_content_kana WHERE character = 'じゃ' AND script = 'hira')),
 
   ('じゅぎょう', '授業', '수업', (SELECT id FROM tbl_content_kana WHERE character = 'じゅ' AND script = 'hira')),
   ('じゅんび', '準備', '준비', (SELECT id FROM tbl_content_kana WHERE character = 'じゅ' AND script = 'hira')),
   ('じゅう', '十', '열', (SELECT id FROM tbl_content_kana WHERE character = 'じゅ' AND script = 'hira')),
+  ('じゅうしょ', '住所', '주소', (SELECT id FROM tbl_content_kana WHERE character = 'じゅ' AND script = 'hira')),
+  ('じゅんばん', '順番', '순번', (SELECT id FROM tbl_content_kana WHERE character = 'じゅ' AND script = 'hira')),
 
   ('じょうず', '上手', '잘함', (SELECT id FROM tbl_content_kana WHERE character = 'じょ' AND script = 'hira')),
   ('じょうほう', '情報', '정보', (SELECT id FROM tbl_content_kana WHERE character = 'じょ' AND script = 'hira')),
   ('かのじょ', '彼女', '그녀', (SELECT id FROM tbl_content_kana WHERE character = 'じょ' AND script = 'hira')),
+  ('じょせい', '女性', '여성', (SELECT id FROM tbl_content_kana WHERE character = 'じょ' AND script = 'hira')),
+  ('じょゆう', '女優', '여배우', (SELECT id FROM tbl_content_kana WHERE character = 'じょ' AND script = 'hira')),
 
   ('さんびゃく', '三百', '삼백', (SELECT id FROM tbl_content_kana WHERE character = 'びゃ' AND script = 'hira')),
   ('さんびゃくえん', '三百円', '삼백 엔', (SELECT id FROM tbl_content_kana WHERE character = 'びゃ' AND script = 'hira')),
@@ -701,7 +873,7 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ろっぴゃく', '六百', '육백', (SELECT id FROM tbl_content_kana WHERE character = 'ぴゃ' AND script = 'hira')),
   ('はっぴゃく', '八百', '팔백', (SELECT id FROM tbl_content_kana WHERE character = 'ぴゃ' AND script = 'hira')),
 
-  ('でんぴょう', '伝票', '전표', (SELECT id FROM tbl_content_kana WHERE character = 'ぴょ' AND script = 'hira'))
+  ('でんぴょう', '伝票', '전표', (SELECT id FROM tbl_content_kana WHERE character = 'ぴょ' AND script = 'hira')),
   ('はっぴょう', '発表', '발표', (SELECT id FROM tbl_content_kana WHERE character = 'ぴょ' AND script = 'hira'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
@@ -712,91 +884,134 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('アイス', '', '아이스크림', (SELECT id FROM tbl_content_kana WHERE character = 'ア' AND script = 'kata')),
   ('アメリカ', '', '미국', (SELECT id FROM tbl_content_kana WHERE character = 'ア' AND script = 'kata')),
   ('アパート', '', '아파트', (SELECT id FROM tbl_content_kana WHERE character = 'ア' AND script = 'kata')),
+  ('アニメ', '', '애니메이션', (SELECT id FROM tbl_content_kana WHERE character = 'ア' AND script = 'kata')),
+  ('アルバイト', '', '아르바이트', (SELECT id FROM tbl_content_kana WHERE character = 'ア' AND script = 'kata')),
 
   ('アイス', '', '아이스크림', (SELECT id FROM tbl_content_kana WHERE character = 'イ' AND script = 'kata')),
   ('イタリア', '', '이탈리아', (SELECT id FROM tbl_content_kana WHERE character = 'イ' AND script = 'kata')),
   ('タイ', '', '태국', (SELECT id FROM tbl_content_kana WHERE character = 'イ' AND script = 'kata')),
+  ('イベント', '', '이벤트', (SELECT id FROM tbl_content_kana WHERE character = 'イ' AND script = 'kata')),
+  ('イメージ', '', '이미지', (SELECT id FROM tbl_content_kana WHERE character = 'イ' AND script = 'kata')),
 
   ('ウイスキー', '', '위스키', (SELECT id FROM tbl_content_kana WHERE character = 'ウ' AND script = 'kata')),
   ('ウインナー', '', '소시지', (SELECT id FROM tbl_content_kana WHERE character = 'ウ' AND script = 'kata')),
   ('ウール', '', '울(모직)', (SELECT id FROM tbl_content_kana WHERE character = 'ウ' AND script = 'kata')),
+  ('ウイルス', '', '바이러스', (SELECT id FROM tbl_content_kana WHERE character = 'ウ' AND script = 'kata')),
+  ('ウエディング', '', '웨딩', (SELECT id FROM tbl_content_kana WHERE character = 'ウ' AND script = 'kata')),
 
   ('エレベーター', '', '엘리베이터', (SELECT id FROM tbl_content_kana WHERE character = 'エ' AND script = 'kata')),
   ('エアコン', '', '에어컨', (SELECT id FROM tbl_content_kana WHERE character = 'エ' AND script = 'kata')),
   ('エネルギー', '', '에너지', (SELECT id FROM tbl_content_kana WHERE character = 'エ' AND script = 'kata')),
+  ('エプロン', '', '앞치마', (SELECT id FROM tbl_content_kana WHERE character = 'エ' AND script = 'kata')),
+  ('エスカレーター', '', '에스컬레이터', (SELECT id FROM tbl_content_kana WHERE character = 'エ' AND script = 'kata')),
 
   ('オレンジ', '', '오렌지', (SELECT id FROM tbl_content_kana WHERE character = 'オ' AND script = 'kata')),
   ('オムレツ', '', '오믈렛', (SELECT id FROM tbl_content_kana WHERE character = 'オ' AND script = 'kata')),
   ('ラジオ', '', '라디오', (SELECT id FROM tbl_content_kana WHERE character = 'オ' AND script = 'kata')),
+  ('オフィス', '', '사무실', (SELECT id FROM tbl_content_kana WHERE character = 'オ' AND script = 'kata')),
+  ('オートバイ', '', '오토바이', (SELECT id FROM tbl_content_kana WHERE character = 'オ' AND script = 'kata')),
 
   ('カメラ', '', '카메라', (SELECT id FROM tbl_content_kana WHERE character = 'カ' AND script = 'kata')),
   ('スカート', '', '치마', (SELECT id FROM tbl_content_kana WHERE character = 'カ' AND script = 'kata')),
   ('カード', '', '카드', (SELECT id FROM tbl_content_kana WHERE character = 'カ' AND script = 'kata')),
+  ('カレー', '', '카레', (SELECT id FROM tbl_content_kana WHERE character = 'カ' AND script = 'kata')),
+  ('カラオケ', '', '노래방', (SELECT id FROM tbl_content_kana WHERE character = 'カ' AND script = 'kata')),
 
   ('スキー', '', '스키', (SELECT id FROM tbl_content_kana WHERE character = 'キ' AND script = 'kata')),
   ('キロ', '', '킬로', (SELECT id FROM tbl_content_kana WHERE character = 'キ' AND script = 'kata')),
   ('キッチン', '', '주방', (SELECT id FROM tbl_content_kana WHERE character = 'キ' AND script = 'kata')),
+  ('キー', '', '열쇠', (SELECT id FROM tbl_content_kana WHERE character = 'キ' AND script = 'kata')),
+  ('キムチ', '', '김치', (SELECT id FROM tbl_content_kana WHERE character = 'キ' AND script = 'kata')),
 
   ('クラス', '', '클래스', (SELECT id FROM tbl_content_kana WHERE character = 'ク' AND script = 'kata')),
   ('クッキー', '', '쿠키', (SELECT id FROM tbl_content_kana WHERE character = 'ク' AND script = 'kata')),
   ('クリスマス', '', '크리스마스', (SELECT id FROM tbl_content_kana WHERE character = 'ク' AND script = 'kata')),
+  ('クイズ', '', '퀴즈', (SELECT id FROM tbl_content_kana WHERE character = 'ク' AND script = 'kata')),
+  ('クレヨン', '', '크레용', (SELECT id FROM tbl_content_kana WHERE character = 'ク' AND script = 'kata')),
 
   ('ケーキ', '', '케이크', (SELECT id FROM tbl_content_kana WHERE character = 'ケ' AND script = 'kata')),
   ('バスケット', '', '농구', (SELECT id FROM tbl_content_kana WHERE character = 'ケ' AND script = 'kata')),
   ('バケツ', '', '양동이', (SELECT id FROM tbl_content_kana WHERE character = 'ケ' AND script = 'kata')),
   ('ケチャップ', '', '케첩', (SELECT id FROM tbl_content_kana WHERE character = 'ケ' AND script = 'kata')),
+  ('ケーブル', '', '케이블', (SELECT id FROM tbl_content_kana WHERE character = 'ケ' AND script = 'kata')),
 
   ('コーヒー', '', '커피', (SELECT id FROM tbl_content_kana WHERE character = 'コ' AND script = 'kata')),
   ('コンピューター', '', '컴퓨터', (SELECT id FROM tbl_content_kana WHERE character = 'コ' AND script = 'kata')),
   ('コアラ', '', '코알라', (SELECT id FROM tbl_content_kana WHERE character = 'コ' AND script = 'kata')),
+  ('コート', '', '코트', (SELECT id FROM tbl_content_kana WHERE character = 'コ' AND script = 'kata')),
+  ('コップ', '', '컵', (SELECT id FROM tbl_content_kana WHERE character = 'コ' AND script = 'kata')),
 
   ('サラダ', '', '샐러드', (SELECT id FROM tbl_content_kana WHERE character = 'サ' AND script = 'kata')),
   ('サッカー', '', '축구', (SELECT id FROM tbl_content_kana WHERE character = 'サ' AND script = 'kata')),
   ('サンドイッチ', '', '샌드위치', (SELECT id FROM tbl_content_kana WHERE character = 'サ' AND script = 'kata')),
+  ('サイズ', '', '사이즈', (SELECT id FROM tbl_content_kana WHERE character = 'サ' AND script = 'kata')),
+  ('サボテン', '', '선인장', (SELECT id FROM tbl_content_kana WHERE character = 'サ' AND script = 'kata')),
 
   ('シャワー', '', '샤워', (SELECT id FROM tbl_content_kana WHERE character = 'シ' AND script = 'kata')),
   ('タクシー', '', '택시', (SELECT id FROM tbl_content_kana WHERE character = 'シ' AND script = 'kata')),
   ('シチュー', '', '스튜', (SELECT id FROM tbl_content_kana WHERE character = 'シ' AND script = 'kata')),
+  ('シーツ', '', '시트', (SELECT id FROM tbl_content_kana WHERE character = 'シ' AND script = 'kata')),
+  ('シール', '', '스티커', (SELECT id FROM tbl_content_kana WHERE character = 'シ' AND script = 'kata')),
 
   ('スープ', '', '수프', (SELECT id FROM tbl_content_kana WHERE character = 'ス' AND script = 'kata')),
   ('バス', '', '버스', (SELECT id FROM tbl_content_kana WHERE character = 'ス' AND script = 'kata')),
   ('ストレス', '', '스트레스', (SELECT id FROM tbl_content_kana WHERE character = 'ス' AND script = 'kata')),
+  ('スキー', '', '스키', (SELECT id FROM tbl_content_kana WHERE character = 'ス' AND script = 'kata')),
+  ('スプーン', '', '숟가락', (SELECT id FROM tbl_content_kana WHERE character = 'ス' AND script = 'kata')),
 
   ('セーター', '', '스웨터', (SELECT id FROM tbl_content_kana WHERE character = 'セ' AND script = 'kata')),
   ('センター', '', '센터', (SELECT id FROM tbl_content_kana WHERE character = 'セ' AND script = 'kata')),
   ('セロテープ', '', '셀로판테이프', (SELECT id FROM tbl_content_kana WHERE character = 'セ' AND script = 'kata')),
+  ('セット', '', '세트', (SELECT id FROM tbl_content_kana WHERE character = 'セ' AND script = 'kata')),
+  ('セール', '', '세일', (SELECT id FROM tbl_content_kana WHERE character = 'セ' AND script = 'kata')),
 
   ('ソース', '', '소스', (SELECT id FROM tbl_content_kana WHERE character = 'ソ' AND script = 'kata')),
   ('ソファ', '', '소파', (SELECT id FROM tbl_content_kana WHERE character = 'ソ' AND script = 'kata')),
   ('ソックス', '', '양말', (SELECT id FROM tbl_content_kana WHERE character = 'ソ' AND script = 'kata')),
+  ('ソーセージ', '', '소시지', (SELECT id FROM tbl_content_kana WHERE character = 'ソ' AND script = 'kata')),
+  ('ソフト', '', '소프트', (SELECT id FROM tbl_content_kana WHERE character = 'ソ' AND script = 'kata')),
 
   ('タクシー', '', '택시', (SELECT id FROM tbl_content_kana WHERE character = 'タ' AND script = 'kata')),
   ('タオル', '', '수건', (SELECT id FROM tbl_content_kana WHERE character = 'タ' AND script = 'kata')),
   ('データ', '', '데이터', (SELECT id FROM tbl_content_kana WHERE character = 'タ' AND script = 'kata')),
+  ('タイヤ', '', '타이어', (SELECT id FROM tbl_content_kana WHERE character = 'タ' AND script = 'kata')),
+  ('タワー', '', '타워', (SELECT id FROM tbl_content_kana WHERE character = 'タ' AND script = 'kata')),
 
   ('チーズ', '', '치즈', (SELECT id FROM tbl_content_kana WHERE character = 'チ' AND script = 'kata')),
   ('チョコレート', '', '초콜릿', (SELECT id FROM tbl_content_kana WHERE character = 'チ' AND script = 'kata')),
   ('キッチン', '', '주방', (SELECT id FROM tbl_content_kana WHERE character = 'チ' AND script = 'kata')),
+  ('チケット', '', '티켓', (SELECT id FROM tbl_content_kana WHERE character = 'チ' AND script = 'kata')),
+  ('チーム', '', '팀', (SELECT id FROM tbl_content_kana WHERE character = 'チ' AND script = 'kata')),
 
   ('ツアー', '', '투어', (SELECT id FROM tbl_content_kana WHERE character = 'ツ' AND script = 'kata')),
   ('ツイン', '', '트윈룸', (SELECT id FROM tbl_content_kana WHERE character = 'ツ' AND script = 'kata')),
   ('スーツ', '', '정장', (SELECT id FROM tbl_content_kana WHERE character = 'ツ' AND script = 'kata')),
+  ('ツナ', '', '참치', (SELECT id FROM tbl_content_kana WHERE character = 'ツ' AND script = 'kata')),
+  ('ツリー', '', '트리', (SELECT id FROM tbl_content_kana WHERE character = 'ツ' AND script = 'kata')),
 
   ('テレビ', '', '텔레비전', (SELECT id FROM tbl_content_kana WHERE character = 'テ' AND script = 'kata')),
   ('テーブル', '', '테이블', (SELECT id FROM tbl_content_kana WHERE character = 'テ' AND script = 'kata')),
   ('ホテル', '', '호텔', (SELECT id FROM tbl_content_kana WHERE character = 'テ' AND script = 'kata')),
+  ('テスト', '', '시험', (SELECT id FROM tbl_content_kana WHERE character = 'テ' AND script = 'kata')),
+  ('テント', '', '텐트', (SELECT id FROM tbl_content_kana WHERE character = 'テ' AND script = 'kata')),
 
   ('トマト', '', '토마토', (SELECT id FROM tbl_content_kana WHERE character = 'ト' AND script = 'kata')),
   ('トイレ', '', '화장실', (SELECT id FROM tbl_content_kana WHERE character = 'ト' AND script = 'kata')),
   ('トースト', '', '토스트', (SELECT id FROM tbl_content_kana WHERE character = 'ト' AND script = 'kata')),
+  ('トラック', '', '트럭', (SELECT id FROM tbl_content_kana WHERE character = 'ト' AND script = 'kata')),
+  ('トンネル', '', '터널', (SELECT id FROM tbl_content_kana WHERE character = 'ト' AND script = 'kata')),
 
   ('バナナ', '', '바나나', (SELECT id FROM tbl_content_kana WHERE character = 'ナ' AND script = 'kata')),
   ('ナイフ', '', '칼', (SELECT id FROM tbl_content_kana WHERE character = 'ナ' AND script = 'kata')),
   ('カナダ', '', '캐나다', (SELECT id FROM tbl_content_kana WHERE character = 'ナ' AND script = 'kata')),
+  ('ナプキン', '', '냅킨', (SELECT id FROM tbl_content_kana WHERE character = 'ナ' AND script = 'kata')),
+  ('トナカイ', '', '순록', (SELECT id FROM tbl_content_kana WHERE character = 'ナ' AND script = 'kata')),
 
   ('テニス', '', '테니스', (SELECT id FROM tbl_content_kana WHERE character = 'ニ' AND script = 'kata')),
   ('ニュース', '', '뉴스', (SELECT id FROM tbl_content_kana WHERE character = 'ニ' AND script = 'kata')),
   ('コンビニ', '', '편의점', (SELECT id FROM tbl_content_kana WHERE character = 'ニ' AND script = 'kata')),
+  ('ニット', '', '니트', (SELECT id FROM tbl_content_kana WHERE character = 'ニ' AND script = 'kata')),
+  ('ミニ', '', '미니', (SELECT id FROM tbl_content_kana WHERE character = 'ニ' AND script = 'kata')),
 
   ('カヌー', '', '카누', (SELECT id FROM tbl_content_kana WHERE character = 'ヌ' AND script = 'kata')),
   ('ヌードル', '', '누들(면)', (SELECT id FROM tbl_content_kana WHERE character = 'ヌ' AND script = 'kata')),
@@ -804,90 +1019,134 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('インターネット', '', '인터넷', (SELECT id FROM tbl_content_kana WHERE character = 'ネ' AND script = 'kata')),
   ('ネクタイ', '', '넥타이', (SELECT id FROM tbl_content_kana WHERE character = 'ネ' AND script = 'kata')),
   ('ネックレス', '', '목걸이', (SELECT id FROM tbl_content_kana WHERE character = 'ネ' AND script = 'kata')),
+  ('ネット', '', '네트/인터넷', (SELECT id FROM tbl_content_kana WHERE character = 'ネ' AND script = 'kata')),
+  ('マヨネーズ', '', '마요네즈', (SELECT id FROM tbl_content_kana WHERE character = 'ネ' AND script = 'kata')),
 
   ('ノート', '', '노트', (SELECT id FROM tbl_content_kana WHERE character = 'ノ' AND script = 'kata')),
   ('ピアノ', '', '피아노', (SELECT id FROM tbl_content_kana WHERE character = 'ノ' AND script = 'kata')),
   ('カジノ', '', '카지노', (SELECT id FROM tbl_content_kana WHERE character = 'ノ' AND script = 'kata')),
+  ('ノック', '', '노크', (SELECT id FROM tbl_content_kana WHERE character = 'ノ' AND script = 'kata')),
+  ('ドミノ', '', '도미노', (SELECT id FROM tbl_content_kana WHERE character = 'ノ' AND script = 'kata')),
 
   ('ハンバーガー', '', '햄버거', (SELECT id FROM tbl_content_kana WHERE character = 'ハ' AND script = 'kata')),
   ('ハンカチ', '', '손수건', (SELECT id FROM tbl_content_kana WHERE character = 'ハ' AND script = 'kata')),
   ('ハワイ', '', '하와이', (SELECT id FROM tbl_content_kana WHERE character = 'ハ' AND script = 'kata')),
+  ('ハート', '', '하트', (SELECT id FROM tbl_content_kana WHERE character = 'ハ' AND script = 'kata')),
+  ('ハム', '', '햄', (SELECT id FROM tbl_content_kana WHERE character = 'ハ' AND script = 'kata')),
 
   ('ヒーター', '', '히터', (SELECT id FROM tbl_content_kana WHERE character = 'ヒ' AND script = 'kata')),
   ('コーヒー', '', '커피', (SELECT id FROM tbl_content_kana WHERE character = 'ヒ' AND script = 'kata')),
   ('ヒーロー', '', '히어로', (SELECT id FROM tbl_content_kana WHERE character = 'ヒ' AND script = 'kata')),
+  ('ヒント', '', '힌트', (SELECT id FROM tbl_content_kana WHERE character = 'ヒ' AND script = 'kata')),
+  ('ヒール', '', '힐(굽)', (SELECT id FROM tbl_content_kana WHERE character = 'ヒ' AND script = 'kata')),
 
   ('フォーク', '', '포크', (SELECT id FROM tbl_content_kana WHERE character = 'フ' AND script = 'kata')),
   ('ソファ', '', '소파', (SELECT id FROM tbl_content_kana WHERE character = 'フ' AND script = 'kata')),
   ('フランス', '', '프랑스', (SELECT id FROM tbl_content_kana WHERE character = 'フ' AND script = 'kata')),
+  ('フルーツ', '', '과일', (SELECT id FROM tbl_content_kana WHERE character = 'フ' AND script = 'kata')),
+  ('フライパン', '', '프라이팬', (SELECT id FROM tbl_content_kana WHERE character = 'フ' AND script = 'kata')),
 
   ('ヘリコプター', '', '헬리콥터', (SELECT id FROM tbl_content_kana WHERE character = 'ヘ' AND script = 'kata')),
   ('ヘアスタイル', '', '헤어스타일', (SELECT id FROM tbl_content_kana WHERE character = 'ヘ' AND script = 'kata')),
   ('ヘルメット', '', '헬멧', (SELECT id FROM tbl_content_kana WHERE character = 'ヘ' AND script = 'kata')),
+  ('ヘッドホン', '', '헤드폰', (SELECT id FROM tbl_content_kana WHERE character = 'ヘ' AND script = 'kata')),
+  ('ヘルシー', '', '건강한', (SELECT id FROM tbl_content_kana WHERE character = 'ヘ' AND script = 'kata')),
 
   ('ホテル', '', '호텔', (SELECT id FROM tbl_content_kana WHERE character = 'ホ' AND script = 'kata')),
   ('ホットドッグ', '', '핫도그', (SELECT id FROM tbl_content_kana WHERE character = 'ホ' AND script = 'kata')),
   ('ホラー', '', '호러(공포)', (SELECT id FROM tbl_content_kana WHERE character = 'ホ' AND script = 'kata')),
+  ('ホーム', '', '홈/플랫폼', (SELECT id FROM tbl_content_kana WHERE character = 'ホ' AND script = 'kata')),
+  ('スマホ', '', '스마트폰', (SELECT id FROM tbl_content_kana WHERE character = 'ホ' AND script = 'kata')),
 
   ('マラソン', '', '마라톤', (SELECT id FROM tbl_content_kana WHERE character = 'マ' AND script = 'kata')),
   ('マスク', '', '마스크', (SELECT id FROM tbl_content_kana WHERE character = 'マ' AND script = 'kata')),
   ('トマト', '', '토마토', (SELECT id FROM tbl_content_kana WHERE character = 'マ' AND script = 'kata')),
+  ('マンション', '', '맨션/아파트', (SELECT id FROM tbl_content_kana WHERE character = 'マ' AND script = 'kata')),
+  ('マフラー', '', '목도리', (SELECT id FROM tbl_content_kana WHERE character = 'マ' AND script = 'kata')),
 
   ('ミルク', '', '우유', (SELECT id FROM tbl_content_kana WHERE character = 'ミ' AND script = 'kata')),
   ('アルミ', '', '알루미늄', (SELECT id FROM tbl_content_kana WHERE character = 'ミ' AND script = 'kata')),
   ('ミラー', '', '거울', (SELECT id FROM tbl_content_kana WHERE character = 'ミ' AND script = 'kata')),
+  ('ミシン', '', '재봉틀', (SELECT id FROM tbl_content_kana WHERE character = 'ミ' AND script = 'kata')),
+  ('ミサイル', '', '미사일', (SELECT id FROM tbl_content_kana WHERE character = 'ミ' AND script = 'kata')),
 
   ('ホーム', '', '플랫폼', (SELECT id FROM tbl_content_kana WHERE character = 'ム' AND script = 'kata')),
   ('チーム', '', '팀', (SELECT id FROM tbl_content_kana WHERE character = 'ム' AND script = 'kata')),
   ('アルバム', '', '앨범', (SELECT id FROM tbl_content_kana WHERE character = 'ム' AND script = 'kata')),
+  ('ゲーム', '', '게임', (SELECT id FROM tbl_content_kana WHERE character = 'ム' AND script = 'kata')),
+  ('クリーム', '', '크림', (SELECT id FROM tbl_content_kana WHERE character = 'ム' AND script = 'kata')),
 
   ('メニュー', '', '메뉴', (SELECT id FROM tbl_content_kana WHERE character = 'メ' AND script = 'kata')),
   ('アメリカ', '', '미국', (SELECT id FROM tbl_content_kana WHERE character = 'メ' AND script = 'kata')),
   ('メロン', '', '멜론', (SELECT id FROM tbl_content_kana WHERE character = 'メ' AND script = 'kata')),
+  ('メール', '', '메일', (SELECT id FROM tbl_content_kana WHERE character = 'メ' AND script = 'kata')),
+  ('メダル', '', '메달', (SELECT id FROM tbl_content_kana WHERE character = 'メ' AND script = 'kata')),
 
   ('モデル', '', '모델', (SELECT id FROM tbl_content_kana WHERE character = 'モ' AND script = 'kata')),
   ('レモン', '', '레몬', (SELECT id FROM tbl_content_kana WHERE character = 'モ' AND script = 'kata')),
   ('メモ', '', '메모', (SELECT id FROM tbl_content_kana WHERE character = 'モ' AND script = 'kata')),
+  ('モニター', '', '모니터', (SELECT id FROM tbl_content_kana WHERE character = 'モ' AND script = 'kata')),
+  ('リモコン', '', '리모컨', (SELECT id FROM tbl_content_kana WHERE character = 'モ' AND script = 'kata')),
 
   ('タイヤ', '', '타이어', (SELECT id FROM tbl_content_kana WHERE character = 'ヤ' AND script = 'kata')),
   ('ヤギ', '', '염소', (SELECT id FROM tbl_content_kana WHERE character = 'ヤ' AND script = 'kata')),
   ('ヒマラヤ', '', '히말라야', (SELECT id FROM tbl_content_kana WHERE character = 'ヤ' AND script = 'kata')),
+  ('ダイヤ', '', '다이아몬드', (SELECT id FROM tbl_content_kana WHERE character = 'ヤ' AND script = 'kata')),
+  ('イヤホン', '', '이어폰', (SELECT id FROM tbl_content_kana WHERE character = 'ヤ' AND script = 'kata')),
 
   ('ユニフォーム', '', '유니폼', (SELECT id FROM tbl_content_kana WHERE character = 'ユ' AND script = 'kata')),
   ('ユーザー', '', '사용자', (SELECT id FROM tbl_content_kana WHERE character = 'ユ' AND script = 'kata')),
   ('ユーモア', '', '유머', (SELECT id FROM tbl_content_kana WHERE character = 'ユ' AND script = 'kata')),
+  ('ユーロ', '', '유로', (SELECT id FROM tbl_content_kana WHERE character = 'ユ' AND script = 'kata')),
+  ('ユニット', '', '유닛', (SELECT id FROM tbl_content_kana WHERE character = 'ユ' AND script = 'kata')),
 
   ('ヨーグルト', '', '요구르트', (SELECT id FROM tbl_content_kana WHERE character = 'ヨ' AND script = 'kata')),
   ('ヨット', '', '요트', (SELECT id FROM tbl_content_kana WHERE character = 'ヨ' AND script = 'kata')),
   ('ヨーロッパ', '', '유럽', (SELECT id FROM tbl_content_kana WHERE character = 'ヨ' AND script = 'kata')),
+  ('ヨガ', '', '요가', (SELECT id FROM tbl_content_kana WHERE character = 'ヨ' AND script = 'kata')),
+  ('クレヨン', '', '크레용', (SELECT id FROM tbl_content_kana WHERE character = 'ヨ' AND script = 'kata')),
 
   ('サラダ', '', '샐러드', (SELECT id FROM tbl_content_kana WHERE character = 'ラ' AND script = 'kata')),
   ('ラジオ', '', '라디오', (SELECT id FROM tbl_content_kana WHERE character = 'ラ' AND script = 'kata')),
   ('レストラン', '', '레스토랑', (SELECT id FROM tbl_content_kana WHERE character = 'ラ' AND script = 'kata')),
+  ('ライオン', '', '사자', (SELECT id FROM tbl_content_kana WHERE character = 'ラ' AND script = 'kata')),
+  ('ラーメン', '', '라멘', (SELECT id FROM tbl_content_kana WHERE character = 'ラ' AND script = 'kata')),
 
   ('アメリカ', '', '미국', (SELECT id FROM tbl_content_kana WHERE character = 'リ' AND script = 'kata')),
   ('リボン', '', '리본', (SELECT id FROM tbl_content_kana WHERE character = 'リ' AND script = 'kata')),
   ('リズム', '', '리듬', (SELECT id FROM tbl_content_kana WHERE character = 'リ' AND script = 'kata')),
+  ('リットル', '', '리터', (SELECT id FROM tbl_content_kana WHERE character = 'リ' AND script = 'kata')),
+  ('ゼリー', '', '젤리', (SELECT id FROM tbl_content_kana WHERE character = 'リ' AND script = 'kata')),
 
   ('テーブル', '', '테이블', (SELECT id FROM tbl_content_kana WHERE character = 'ル' AND script = 'kata')),
   ('ルール', '', '규칙', (SELECT id FROM tbl_content_kana WHERE character = 'ル' AND script = 'kata')),
   ('ビル', '', '빌딩', (SELECT id FROM tbl_content_kana WHERE character = 'ル' AND script = 'kata')),
+  ('プール', '', '수영장', (SELECT id FROM tbl_content_kana WHERE character = 'ル' AND script = 'kata')),
+  ('メール', '', '메일', (SELECT id FROM tbl_content_kana WHERE character = 'ル' AND script = 'kata')),
 
   ('テレビ', '', '텔레비전', (SELECT id FROM tbl_content_kana WHERE character = 'レ' AND script = 'kata')),
   ('レストラン', '', '레스토랑', (SELECT id FROM tbl_content_kana WHERE character = 'レ' AND script = 'kata')),
   ('レシピ', '', '레시피', (SELECT id FROM tbl_content_kana WHERE character = 'レ' AND script = 'kata')),
+  ('カレー', '', '카레', (SELECT id FROM tbl_content_kana WHERE character = 'レ' AND script = 'kata')),
+  ('レモン', '', '레몬', (SELECT id FROM tbl_content_kana WHERE character = 'レ' AND script = 'kata')),
 
   ('ロボット', '', '로봇', (SELECT id FROM tbl_content_kana WHERE character = 'ロ' AND script = 'kata')),
   ('ヒーロー', '', '히어로', (SELECT id FROM tbl_content_kana WHERE character = 'ロ' AND script = 'kata')),
   ('カタログ', '', '카탈로그', (SELECT id FROM tbl_content_kana WHERE character = 'ロ' AND script = 'kata')),
+  ('ロケット', '', '로켓', (SELECT id FROM tbl_content_kana WHERE character = 'ロ' AND script = 'kata')),
+  ('プロ', '', '프로', (SELECT id FROM tbl_content_kana WHERE character = 'ロ' AND script = 'kata')),
 
   ('ワイン', '', '와인', (SELECT id FROM tbl_content_kana WHERE character = 'ワ' AND script = 'kata')),
   ('ハワイ', '', '하와이', (SELECT id FROM tbl_content_kana WHERE character = 'ワ' AND script = 'kata')),
   ('ワッフル', '', '와플', (SELECT id FROM tbl_content_kana WHERE character = 'ワ' AND script = 'kata')),
+  ('ワンピース', '', '원피스', (SELECT id FROM tbl_content_kana WHERE character = 'ワ' AND script = 'kata')),
+  ('ワイシャツ', '', '와이셔츠', (SELECT id FROM tbl_content_kana WHERE character = 'ワ' AND script = 'kata')),
 
   ('パン', '', '빵', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata')),
   ('レストラン', '', '레스토랑', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata')),
-  ('ペン', '', '펜', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata'))
+  ('ペン', '', '펜', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata')),
+  ('ボタン', '', '단추', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata')),
+  ('パンダ', '', '판다', (SELECT id FROM tbl_content_kana WHERE character = 'ン' AND script = 'kata'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
 
@@ -897,92 +1156,137 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ガム', '', '껌', (SELECT id FROM tbl_content_kana WHERE character = 'ガ' AND script = 'kata')),
   ('ガラス', '', '유리', (SELECT id FROM tbl_content_kana WHERE character = 'ガ' AND script = 'kata')),
   ('ハンバーガー', '', '햄버거', (SELECT id FROM tbl_content_kana WHERE character = 'ガ' AND script = 'kata')),
+  ('オルガン', '', '오르간', (SELECT id FROM tbl_content_kana WHERE character = 'ガ' AND script = 'kata')),
+  ('ガイド', '', '가이드', (SELECT id FROM tbl_content_kana WHERE character = 'ガ' AND script = 'kata')),
 
   ('ギター', '', '기타', (SELECT id FROM tbl_content_kana WHERE character = 'ギ' AND script = 'kata')),
   ('ギフト', '', '선물', (SELECT id FROM tbl_content_kana WHERE character = 'ギ' AND script = 'kata')),
   ('ギリシャ', '', '그리스', (SELECT id FROM tbl_content_kana WHERE character = 'ギ' AND script = 'kata')),
+  ('エネルギー', '', '에너지', (SELECT id FROM tbl_content_kana WHERE character = 'ギ' AND script = 'kata')),
+  ('ギリギリ', '', '아슬아슬', (SELECT id FROM tbl_content_kana WHERE character = 'ギ' AND script = 'kata')),
 
   ('グラス', '', '유리컵', (SELECT id FROM tbl_content_kana WHERE character = 'グ' AND script = 'kata')),
   ('グループ', '', '그룹', (SELECT id FROM tbl_content_kana WHERE character = 'グ' AND script = 'kata')),
   ('プログラム', '', '프로그램', (SELECT id FROM tbl_content_kana WHERE character = 'グ' AND script = 'kata')),
+  ('グラウンド', '', '운동장', (SELECT id FROM tbl_content_kana WHERE character = 'グ' AND script = 'kata')),
+  ('グローブ', '', '글러브', (SELECT id FROM tbl_content_kana WHERE character = 'グ' AND script = 'kata')),
 
   ('ゲーム', '', '게임', (SELECT id FROM tbl_content_kana WHERE character = 'ゲ' AND script = 'kata')),
   ('ゲート', '', '게이트', (SELECT id FROM tbl_content_kana WHERE character = 'ゲ' AND script = 'kata')),
   ('ゲスト', '', '게스트', (SELECT id FROM tbl_content_kana WHERE character = 'ゲ' AND script = 'kata')),
+  ('ゲージ', '', '게이지', (SELECT id FROM tbl_content_kana WHERE character = 'ゲ' AND script = 'kata')),
+  ('ゲリラ', '', '게릴라', (SELECT id FROM tbl_content_kana WHERE character = 'ゲ' AND script = 'kata')),
 
   ('ゴルフ', '', '골프', (SELECT id FROM tbl_content_kana WHERE character = 'ゴ' AND script = 'kata')),
   ('タンゴ', '', '탱고', (SELECT id FROM tbl_content_kana WHERE character = 'ゴ' AND script = 'kata')),
   ('マンゴー', '', '망고', (SELECT id FROM tbl_content_kana WHERE character = 'ゴ' AND script = 'kata')),
+  ('ゴール', '', '골', (SELECT id FROM tbl_content_kana WHERE character = 'ゴ' AND script = 'kata')),
+  ('ゴリラ', '', '고릴라', (SELECT id FROM tbl_content_kana WHERE character = 'ゴ' AND script = 'kata')),
 
   ('ピザ', '', '피자', (SELECT id FROM tbl_content_kana WHERE character = 'ザ' AND script = 'kata')),
   ('デザート', '', '디저트', (SELECT id FROM tbl_content_kana WHERE character = 'ザ' AND script = 'kata')),
   ('ザリガニ', '', '가재', (SELECT id FROM tbl_content_kana WHERE character = 'ザ' AND script = 'kata')),
+  ('デザイン', '', '디자인', (SELECT id FROM tbl_content_kana WHERE character = 'ザ' AND script = 'kata')),
+  ('ザーザー', '', '좍좍(비 소리)', (SELECT id FROM tbl_content_kana WHERE character = 'ザ' AND script = 'kata')),
 
   ('メッセージ', '', '메시지', (SELECT id FROM tbl_content_kana WHERE character = 'ジ' AND script = 'kata')),
   ('レジ', '', '계산대', (SELECT id FROM tbl_content_kana WHERE character = 'ジ' AND script = 'kata')),
   ('ジュース', '', '주스', (SELECT id FROM tbl_content_kana WHERE character = 'ジ' AND script = 'kata')),
+  ('ジーンズ', '', '청바지', (SELECT id FROM tbl_content_kana WHERE character = 'ジ' AND script = 'kata')),
+  ('イメージ', '', '이미지', (SELECT id FROM tbl_content_kana WHERE character = 'ジ' AND script = 'kata')),
 
   ('チーズ', '', '치즈', (SELECT id FROM tbl_content_kana WHERE character = 'ズ' AND script = 'kata')),
   ('サイズ', '', '사이즈', (SELECT id FROM tbl_content_kana WHERE character = 'ズ' AND script = 'kata')),
   ('ジーンズ', '', '청바지', (SELECT id FROM tbl_content_kana WHERE character = 'ズ' AND script = 'kata')),
+  ('クイズ', '', '퀴즈', (SELECT id FROM tbl_content_kana WHERE character = 'ズ' AND script = 'kata')),
+  ('パズル', '', '퍼즐', (SELECT id FROM tbl_content_kana WHERE character = 'ズ' AND script = 'kata')),
 
   ('ゼロ', '', '제로', (SELECT id FROM tbl_content_kana WHERE character = 'ゼ' AND script = 'kata')),
   ('ゼリー', '', '젤리', (SELECT id FROM tbl_content_kana WHERE character = 'ゼ' AND script = 'kata')),
+  ('ゼミ', '', '세미나', (SELECT id FROM tbl_content_kana WHERE character = 'ゼ' AND script = 'kata')),
 
   ('リゾート', '', '리조트', (SELECT id FROM tbl_content_kana WHERE character = 'ゾ' AND script = 'kata')),
   ('ゾンビ', '', '좀비', (SELECT id FROM tbl_content_kana WHERE character = 'ゾ' AND script = 'kata')),
+  ('ゾーン', '', '존(구역)', (SELECT id FROM tbl_content_kana WHERE character = 'ゾ' AND script = 'kata')),
+  ('ゾロゾロ', '', '줄줄이', (SELECT id FROM tbl_content_kana WHERE character = 'ゾ' AND script = 'kata')),
 
   ('サラダ', '', '샐러드', (SELECT id FROM tbl_content_kana WHERE character = 'ダ' AND script = 'kata')),
   ('ダンス', '', '댄스', (SELECT id FROM tbl_content_kana WHERE character = 'ダ' AND script = 'kata')),
   ('カナダ', '', '캐나다', (SELECT id FROM tbl_content_kana WHERE character = 'ダ' AND script = 'kata')),
+  ('ダイヤ', '', '다이아', (SELECT id FROM tbl_content_kana WHERE character = 'ダ' AND script = 'kata')),
+  ('サンダル', '', '샌들', (SELECT id FROM tbl_content_kana WHERE character = 'ダ' AND script = 'kata')),
 
   ('デザート', '', '디저트', (SELECT id FROM tbl_content_kana WHERE character = 'デ' AND script = 'kata')),
   ('デザイン', '', '디자인', (SELECT id FROM tbl_content_kana WHERE character = 'デ' AND script = 'kata')),
   ('データ', '', '데이터', (SELECT id FROM tbl_content_kana WHERE character = 'デ' AND script = 'kata')),
+  ('デパート', '', '백화점', (SELECT id FROM tbl_content_kana WHERE character = 'デ' AND script = 'kata')),
+  ('ビデオ', '', '비디오', (SELECT id FROM tbl_content_kana WHERE character = 'デ' AND script = 'kata')),
 
   ('ドア', '', '문', (SELECT id FROM tbl_content_kana WHERE character = 'ド' AND script = 'kata')),
   ('ホットドッグ', '', '핫도그', (SELECT id FROM tbl_content_kana WHERE character = 'ド' AND script = 'kata')),
   ('サンドイッチ', '', '샌드위치', (SELECT id FROM tbl_content_kana WHERE character = 'ド' AND script = 'kata')),
+  ('ドラマ', '', '드라마', (SELECT id FROM tbl_content_kana WHERE character = 'ド' AND script = 'kata')),
+  ('ドレス', '', '드레스', (SELECT id FROM tbl_content_kana WHERE character = 'ド' AND script = 'kata')),
 
   ('バス', '', '버스', (SELECT id FROM tbl_content_kana WHERE character = 'バ' AND script = 'kata')),
   ('ハンバーガー', '', '햄버거', (SELECT id FROM tbl_content_kana WHERE character = 'バ' AND script = 'kata')),
   ('バナナ', '', '바나나', (SELECT id FROM tbl_content_kana WHERE character = 'バ' AND script = 'kata')),
+  ('バター', '', '버터', (SELECT id FROM tbl_content_kana WHERE character = 'バ' AND script = 'kata')),
+  ('カバー', '', '커버', (SELECT id FROM tbl_content_kana WHERE character = 'バ' AND script = 'kata')),
 
   ('ビール', '', '맥주', (SELECT id FROM tbl_content_kana WHERE character = 'ビ' AND script = 'kata')),
   ('テレビ', '', '텔레비전', (SELECT id FROM tbl_content_kana WHERE character = 'ビ' AND script = 'kata')),
   ('コンビニ', '', '편의점', (SELECT id FROM tbl_content_kana WHERE character = 'ビ' AND script = 'kata')),
+  ('ビデオ', '', '비디오', (SELECT id FROM tbl_content_kana WHERE character = 'ビ' AND script = 'kata')),
+  ('サービス', '', '서비스', (SELECT id FROM tbl_content_kana WHERE character = 'ビ' AND script = 'kata')),
 
   ('クラブ', '', '클럽', (SELECT id FROM tbl_content_kana WHERE character = 'ブ' AND script = 'kata')),
   ('テーブル', '', '테이블', (SELECT id FROM tbl_content_kana WHERE character = 'ブ' AND script = 'kata')),
   ('ブランド', '', '브랜드', (SELECT id FROM tbl_content_kana WHERE character = 'ブ' AND script = 'kata')),
+  ('ブーツ', '', '부츠', (SELECT id FROM tbl_content_kana WHERE character = 'ブ' AND script = 'kata')),
+  ('ドライブ', '', '드라이브', (SELECT id FROM tbl_content_kana WHERE character = 'ブ' AND script = 'kata')),
 
   ('ベッド', '', '침대', (SELECT id FROM tbl_content_kana WHERE character = 'ベ' AND script = 'kata')),
   ('ベルト', '', '벨트', (SELECT id FROM tbl_content_kana WHERE character = 'ベ' AND script = 'kata')),
   ('ベンチ', '', '벤치', (SELECT id FROM tbl_content_kana WHERE character = 'ベ' AND script = 'kata')),
+  ('ベル', '', '벨', (SELECT id FROM tbl_content_kana WHERE character = 'ベ' AND script = 'kata')),
+  ('ベビー', '', '아기', (SELECT id FROM tbl_content_kana WHERE character = 'ベ' AND script = 'kata')),
 
   ('ボール', '', '공', (SELECT id FROM tbl_content_kana WHERE character = 'ボ' AND script = 'kata')),
   ('ロボット', '', '로봇', (SELECT id FROM tbl_content_kana WHERE character = 'ボ' AND script = 'kata')),
   ('ボタン', '', '단추', (SELECT id FROM tbl_content_kana WHERE character = 'ボ' AND script = 'kata')),
+  ('ボート', '', '보트', (SELECT id FROM tbl_content_kana WHERE character = 'ボ' AND script = 'kata')),
+  ('リボン', '', '리본', (SELECT id FROM tbl_content_kana WHERE character = 'ボ' AND script = 'kata')),
 
   ('パン', '', '빵', (SELECT id FROM tbl_content_kana WHERE character = 'パ' AND script = 'kata')),
   ('パジャマ', '', '잠옷', (SELECT id FROM tbl_content_kana WHERE character = 'パ' AND script = 'kata')),
   ('パーティー', '', '파티', (SELECT id FROM tbl_content_kana WHERE character = 'パ' AND script = 'kata')),
+  ('パンダ', '', '판다', (SELECT id FROM tbl_content_kana WHERE character = 'パ' AND script = 'kata')),
+  ('パソコン', '', '컴퓨터(PC)', (SELECT id FROM tbl_content_kana WHERE character = 'パ' AND script = 'kata')),
 
   ('ピザ', '', '피자', (SELECT id FROM tbl_content_kana WHERE character = 'ピ' AND script = 'kata')),
   ('ピアノ', '', '피아노', (SELECT id FROM tbl_content_kana WHERE character = 'ピ' AND script = 'kata')),
   ('ピクニック', '', '소풍', (SELECT id FROM tbl_content_kana WHERE character = 'ピ' AND script = 'kata')),
+  ('コピー', '', '복사', (SELECT id FROM tbl_content_kana WHERE character = 'ピ' AND script = 'kata')),
+  ('ピンク', '', '핑크', (SELECT id FROM tbl_content_kana WHERE character = 'ピ' AND script = 'kata')),
 
   ('プール', '', '수영장', (SELECT id FROM tbl_content_kana WHERE character = 'プ' AND script = 'kata')),
   ('グループ', '', '그룹', (SELECT id FROM tbl_content_kana WHERE character = 'プ' AND script = 'kata')),
   ('プレゼント', '', '선물', (SELECT id FROM tbl_content_kana WHERE character = 'プ' AND script = 'kata')),
+  ('プリン', '', '푸딩', (SELECT id FROM tbl_content_kana WHERE character = 'プ' AND script = 'kata')),
+  ('カップ', '', '컵', (SELECT id FROM tbl_content_kana WHERE character = 'プ' AND script = 'kata')),
 
   ('ペン', '', '펜', (SELECT id FROM tbl_content_kana WHERE character = 'ペ' AND script = 'kata')),
   ('ペット', '', '반려동물', (SELECT id FROM tbl_content_kana WHERE character = 'ペ' AND script = 'kata')),
   ('スペイン', '', '스페인', (SELECT id FROM tbl_content_kana WHERE character = 'ペ' AND script = 'kata')),
+  ('ページ', '', '페이지', (SELECT id FROM tbl_content_kana WHERE character = 'ペ' AND script = 'kata')),
+  ('ペンギン', '', '펭귄', (SELECT id FROM tbl_content_kana WHERE character = 'ペ' AND script = 'kata')),
 
   ('ポテト', '', '감자튀김', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata')),
   ('スポーツ', '', '스포츠', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata')),
-  ('ポスト', '', '우체통', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata'))
+  ('ポスト', '', '우체통', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata')),
+  ('ポケット', '', '주머니', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata')),
+  ('ポイント', '', '포인트', (SELECT id FROM tbl_content_kana WHERE character = 'ポ' AND script = 'kata'))
 ON CONFLICT (kana_id, surface) DO NOTHING;
 
 
@@ -992,9 +1296,13 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('キャンプ', '', '캠핑', (SELECT id FROM tbl_content_kana WHERE character = 'キャ' AND script = 'kata')),
   ('キャベツ', '', '양배추', (SELECT id FROM tbl_content_kana WHERE character = 'キャ' AND script = 'kata')),
   ('キャラクター', '', '캐릭터', (SELECT id FROM tbl_content_kana WHERE character = 'キャ' AND script = 'kata')),
+  ('キャッシュ', '', '현금', (SELECT id FROM tbl_content_kana WHERE character = 'キャ' AND script = 'kata')),
+  ('キャンセル', '', '취소', (SELECT id FROM tbl_content_kana WHERE character = 'キャ' AND script = 'kata')),
 
   ('バーベキュー', '', '바비큐', (SELECT id FROM tbl_content_kana WHERE character = 'キュ' AND script = 'kata')),
   ('キュート', '', '귀여운', (SELECT id FROM tbl_content_kana WHERE character = 'キュ' AND script = 'kata')),
+  ('キュー', '', '큐', (SELECT id FROM tbl_content_kana WHERE character = 'キュ' AND script = 'kata')),
+  ('レスキュー', '', '구조', (SELECT id FROM tbl_content_kana WHERE character = 'キュ' AND script = 'kata')),
 
   ('キョロキョロ', '', '두리번두리번', (SELECT id FROM tbl_content_kana WHERE character = 'キョ' AND script = 'kata')),
   ('キョウリュウ', '', '공룡', (SELECT id FROM tbl_content_kana WHERE character = 'キョ' AND script = 'kata')),
@@ -1002,24 +1310,33 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('シャツ', '', '셔츠', (SELECT id FROM tbl_content_kana WHERE character = 'シャ' AND script = 'kata')),
   ('シャワー', '', '샤워', (SELECT id FROM tbl_content_kana WHERE character = 'シャ' AND script = 'kata')),
   ('シャンプー', '', '샴푸', (SELECT id FROM tbl_content_kana WHERE character = 'シャ' AND script = 'kata')),
+  ('シャッター', '', '셔터', (SELECT id FROM tbl_content_kana WHERE character = 'シャ' AND script = 'kata')),
+  ('シャベル', '', '삽', (SELECT id FROM tbl_content_kana WHERE character = 'シャ' AND script = 'kata')),
 
   ('シュークリーム', '', '슈크림', (SELECT id FROM tbl_content_kana WHERE character = 'シュ' AND script = 'kata')),
   ('シュート', '', '슛', (SELECT id FROM tbl_content_kana WHERE character = 'シュ' AND script = 'kata')),
+  ('シューズ', '', '신발', (SELECT id FROM tbl_content_kana WHERE character = 'シュ' AND script = 'kata')),
 
   ('ショッピング', '', '쇼핑', (SELECT id FROM tbl_content_kana WHERE character = 'ショ' AND script = 'kata')),
   ('ショー', '', '쇼', (SELECT id FROM tbl_content_kana WHERE character = 'ショ' AND script = 'kata')),
   ('ショック', '', '충격', (SELECT id FROM tbl_content_kana WHERE character = 'ショ' AND script = 'kata')),
+  ('ショート', '', '쇼트(짧음)', (SELECT id FROM tbl_content_kana WHERE character = 'ショ' AND script = 'kata')),
 
   ('チャンス', '', '기회', (SELECT id FROM tbl_content_kana WHERE character = 'チャ' AND script = 'kata')),
   ('チャンピオン', '', '챔피언', (SELECT id FROM tbl_content_kana WHERE character = 'チャ' AND script = 'kata')),
   ('チャレンジ', '', '도전', (SELECT id FROM tbl_content_kana WHERE character = 'チャ' AND script = 'kata')),
+  ('チャンネル', '', '채널', (SELECT id FROM tbl_content_kana WHERE character = 'チャ' AND script = 'kata')),
+  ('チャーハン', '', '볶음밥', (SELECT id FROM tbl_content_kana WHERE character = 'チャ' AND script = 'kata')),
 
   ('チューリップ', '', '튤립', (SELECT id FROM tbl_content_kana WHERE character = 'チュ' AND script = 'kata')),
   ('チューインガム', '', '껌', (SELECT id FROM tbl_content_kana WHERE character = 'チュ' AND script = 'kata')),
+  ('チューブ', '', '튜브', (SELECT id FROM tbl_content_kana WHERE character = 'チュ' AND script = 'kata')),
+  ('シチュー', '', '스튜', (SELECT id FROM tbl_content_kana WHERE character = 'チュ' AND script = 'kata')),
 
   ('チョコレート', '', '초콜릿', (SELECT id FROM tbl_content_kana WHERE character = 'チョ' AND script = 'kata')),
   ('チョーク', '', '분필', (SELECT id FROM tbl_content_kana WHERE character = 'チョ' AND script = 'kata')),
   ('チョッキ', '', '조끼', (SELECT id FROM tbl_content_kana WHERE character = 'チョ' AND script = 'kata')),
+  ('チョイス', '', '초이스(선택)', (SELECT id FROM tbl_content_kana WHERE character = 'チョ' AND script = 'kata')),
 
   ('コンニャク', '', '곤약', (SELECT id FROM tbl_content_kana WHERE character = 'ニャ' AND script = 'kata')),
   ('ニャー', '', '야옹', (SELECT id FROM tbl_content_kana WHERE character = 'ニャ' AND script = 'kata')),
@@ -1027,6 +1344,8 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ニュース', '', '뉴스', (SELECT id FROM tbl_content_kana WHERE character = 'ニュ' AND script = 'kata')),
   ('メニュー', '', '메뉴', (SELECT id FROM tbl_content_kana WHERE character = 'ニュ' AND script = 'kata')),
   ('マニュアル', '', '매뉴얼', (SELECT id FROM tbl_content_kana WHERE character = 'ニュ' AND script = 'kata')),
+  ('ニューヨーク', '', '뉴욕', (SELECT id FROM tbl_content_kana WHERE character = 'ニュ' AND script = 'kata')),
+  ('ニュアンス', '', '뉘앙스', (SELECT id FROM tbl_content_kana WHERE character = 'ニュ' AND script = 'kata')),
 
   ('ニョッキ', '', '뇨끼', (SELECT id FROM tbl_content_kana WHERE character = 'ニョ' AND script = 'kata')),
   ('ニョロニョロ', '', '꿈틀꿈틀', (SELECT id FROM tbl_content_kana WHERE character = 'ニョ' AND script = 'kata')),
@@ -1040,6 +1359,7 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ミュージアム', '', '박물관', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
   ('ミュージック', '', '음악', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
   ('コミュニケーション', '', '커뮤니케이션', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
+  ('ミュージカル', '', '뮤지컬', (SELECT id FROM tbl_content_kana WHERE character = 'ミュ' AND script = 'kata')),
 
   ('リュック', '', '배낭', (SELECT id FROM tbl_content_kana WHERE character = 'リュ' AND script = 'kata')),
   ('リュックサック', '', '배낭', (SELECT id FROM tbl_content_kana WHERE character = 'リュ' AND script = 'kata')),
@@ -1047,6 +1367,8 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ギャグ', '', '개그', (SELECT id FROM tbl_content_kana WHERE character = 'ギャ' AND script = 'kata')),
   ('ギャラリー', '', '갤러리', (SELECT id FROM tbl_content_kana WHERE character = 'ギャ' AND script = 'kata')),
   ('ギャップ', '', '차이', (SELECT id FROM tbl_content_kana WHERE character = 'ギャ' AND script = 'kata')),
+  ('ギャング', '', '갱', (SELECT id FROM tbl_content_kana WHERE character = 'ギャ' AND script = 'kata')),
+  ('ギャル', '', '갸루(젊은 여성)', (SELECT id FROM tbl_content_kana WHERE character = 'ギャ' AND script = 'kata')),
 
   ('レギュラー', '', '레귤러', (SELECT id FROM tbl_content_kana WHERE character = 'ギュ' AND script = 'kata')),
   ('ギュッと', '', '꽉', (SELECT id FROM tbl_content_kana WHERE character = 'ギュ' AND script = 'kata')),
@@ -1057,15 +1379,21 @@ INSERT INTO tbl_content_kanaexample (surface, kanji, meaning_ko, kana_id) VALUES
   ('ジャム', '', '잼', (SELECT id FROM tbl_content_kana WHERE character = 'ジャ' AND script = 'kata')),
   ('ジャケット', '', '재킷', (SELECT id FROM tbl_content_kana WHERE character = 'ジャ' AND script = 'kata')),
   ('ジャングル', '', '정글', (SELECT id FROM tbl_content_kana WHERE character = 'ジャ' AND script = 'kata')),
+  ('ジャズ', '', '재즈', (SELECT id FROM tbl_content_kana WHERE character = 'ジャ' AND script = 'kata')),
+  ('ジャンプ', '', '점프', (SELECT id FROM tbl_content_kana WHERE character = 'ジャ' AND script = 'kata')),
 
   ('ジュース', '', '주스', (SELECT id FROM tbl_content_kana WHERE character = 'ジュ' AND script = 'kata')),
   ('ジュエリー', '', '주얼리', (SELECT id FROM tbl_content_kana WHERE character = 'ジュ' AND script = 'kata')),
+  ('ジュニア', '', '주니어', (SELECT id FROM tbl_content_kana WHERE character = 'ジュ' AND script = 'kata')),
 
   ('ジョギング', '', '조깅', (SELECT id FROM tbl_content_kana WHERE character = 'ジョ' AND script = 'kata')),
   ('ジョーク', '', '농담', (SELECT id FROM tbl_content_kana WHERE character = 'ジョ' AND script = 'kata')),
+  ('ジョッキ', '', '맥주잔', (SELECT id FROM tbl_content_kana WHERE character = 'ジョ' AND script = 'kata')),
 
   ('インタビュー', '', '인터뷰', (SELECT id FROM tbl_content_kana WHERE character = 'ビュ' AND script = 'kata')),
   ('デビュー', '', '데뷔', (SELECT id FROM tbl_content_kana WHERE character = 'ビュ' AND script = 'kata')),
+  ('ビュッフェ', '', '뷔페', (SELECT id FROM tbl_content_kana WHERE character = 'ビュ' AND script = 'kata')),
+  ('レビュー', '', '리뷰', (SELECT id FROM tbl_content_kana WHERE character = 'ビュ' AND script = 'kata')),
 
   ('コンピューター', '', '컴퓨터', (SELECT id FROM tbl_content_kana WHERE character = 'ピュ' AND script = 'kata')),
   ('ピュア', '', '순수한', (SELECT id FROM tbl_content_kana WHERE character = 'ピュ' AND script = 'kata'))

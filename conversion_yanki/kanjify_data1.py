@@ -269,7 +269,7 @@ def insert_words(cur, word_units):
     example_rows = []
     for word_id, (_, meanings, examples) in zip(word_ids, word_units):
         for i, mk in enumerate(meanings, start=1):
-            meaning_rows.append((word_id, i, mk, ""))
+            meaning_rows.append((word_id, i, mk))
         for j, ex in enumerate(examples, start=1):
             example_rows.append((word_id, j, ex["o"], ex["r"], ex["t"]))
     if meaning_rows:
@@ -277,12 +277,12 @@ def insert_words(cur, word_units):
             cur,
             """
             INSERT INTO tbl_content_wordmeaning
-              (word_id, sense_no, meaning_ko, note)
+              (word_id, sense_no, meaning_ko)
             VALUES %s
             ON CONFLICT (word_id, sense_no) DO NOTHING
             """,
             meaning_rows,
-            template="(%s,%s,%s,%s)",
+            template="(%s,%s,%s)",
         )
     if example_rows:
         execute_values(
