@@ -69,3 +69,26 @@ DELETE FROM tbl_content_wordexample
 WHERE word_id IN (SELECT id FROM tbl_content_word WHERE surface IN (SELECT s FROM _del_word_surface));
 DELETE FROM tbl_content_word WHERE surface IN (SELECT s FROM _del_word_surface);
 COMMIT;
+
+-- surface 단위 최종 병합: 같은 surface는 id가 가장 작은 row 하나만 남기고 나머지 삭제.
+-- 위쪽 중복 제거는 (surface, word_type, reading, pos, jlpt_level) 전체가 같은 완전중복만
+-- 지우기 때문에, 읽기나 품사가 다른 동형이의어는 그대로 남는다(155개 surface).
+-- 여기서는 그 갈래까지 합친다. 즉 明日(あした/あす) → あした 쪽만, ある(有る/在る/或る)
+-- → 有る만, 上(うえ/かみ/じょう) → うえ만 남고 나머지 읽기와 그 뜻/예문은 사라진다.
+-- 자식(wordmeaning/wordexample)이 FK로 word를 참조하므로 먼저 정리한 뒤 본체를 삭제한다.
+BEGIN;
+DELETE FROM tbl_content_wordmeaning
+WHERE word_id IN (
+    SELECT id FROM tbl_content_word
+    WHERE id NOT IN (SELECT MIN(id) FROM tbl_content_word GROUP BY surface)
+);
+
+DELETE FROM tbl_content_wordexample
+WHERE word_id IN (
+    SELECT id FROM tbl_content_word
+    WHERE id NOT IN (SELECT MIN(id) FROM tbl_content_word GROUP BY surface)
+);
+
+DELETE FROM tbl_content_word
+WHERE id NOT IN (SELECT MIN(id) FROM tbl_content_word GROUP BY surface);
+COMMIT;
